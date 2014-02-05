@@ -4,12 +4,12 @@
 */
 
 html, body {
-    background-color: white;
+    background-color: #1e1e1e;
     margin:0;
     padding:0;
     height:100%;
     font-family: Calibri;
-    background-image: url("../images/wood.png");
+    background-image: url("../images/wood.jpg");
 
 }
 
@@ -27,8 +27,6 @@ html, body {
 
 header {
     height: 120px;
-    border-top-right-radius: inherit; /* afronding bovenhoek */
-    border-top-left-radius: inherit; /* afronding bovenhoek */
 }
 
 /*display of avatar*/
@@ -83,8 +81,6 @@ footer {
     bottom:0;
     width: 100%;
     height: 3em;
-    border-bottom-right-radius:inherit; /* afronding onderhoek */
-    border-bottom-left-radius:inherit; /* afronding onderhoek */
 }
 
 .error {
