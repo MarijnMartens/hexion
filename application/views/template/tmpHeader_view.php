@@ -24,6 +24,27 @@ if (!defined('BASEPATH'))
     <?PHP echo link_tag("assets/css/layout.css"); ?>
     <!-- Download jquery if not on computer -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script>
+        window.document.onkeydown = function (e) {
+            if (!e) {
+                e = event;
+            }
+            if (e.keyCode == 27) {
+                lightbox_close();
+            }
+        }
+        function lightbox_open() {
+            window.scrollTo(0, 0);
+            document.getElementById('light').style.display = 'block';
+            document.getElementById('fade').style.display = 'block';
+        }
+        function lightbox_close() {
+            document.getElementById('light').style.display = 'none';
+            document.getElementById('fade').style.display = 'none';
+        }
+
+    </script>
+
 </head>
 <body>
 <div id="container">
@@ -34,27 +55,27 @@ if (!defined('BASEPATH'))
                                                               alt="logo" height="100"/></a>
         </div>
 
-        <div class='login_menu'>
-            <ul class="login_menu" <?php if ($this->session->userdata('validated') == TRUE) echo 'style="visibility: hidden;"'; ?>>
-                <li><a href="<?php echo base_url('login'); ?>">Login</a></li>
-                <li><a href="<?php echo base_url('login/register'); ?>">Registreer</a></li>
-            </ul>
-        </div>
-        <!-- End login-menu -->
         <div class='user_menu'><!-- Start user-menu -->
-            <ul class="user_menu" <?php if ($this->session->userdata('validated') == TRUE) echo 'style="visibility: visible;"'; ?>>
-                <li><a href="<?php echo base_url('login/logout'); ?>">Logout</a></li>
+            <ul>
+                <?php if ($this->session->userdata('validated') == TRUE) { ?>
+
+                    <li><a href="#"
+                           onclick="lightbox_open();">Hallo <?php echo $this->session->userdata('username'); ?></a></li>
+                <?php } else { ?>
+                    <li><a href="<?php echo base_url('login'); ?>">Login</a></li>
+                    <li><a href="<?php echo base_url('login/register'); ?>">Registreer</a></li>
+                <?php } ?>
             </ul>
-            <?php /*<ul class="user_menu" <?php if ($this->session->userdata('validated') == TRUE) echo 'style="visibility: visible;"'; ?>>
-                    <li><a href="<?php echo base_url('profile'); ?>">Profiel</a></li>
-                    <li>messenger</li>
-                    <li><a href="<?php echo base_url('profile/all'); ?>">Ledenlijst</a></li>
-                    <li>notifications</li>
-                    <li><a href="<?php echo base_url('login/logout'); ?>">Logout</a></li>
-                </ul>*/
-            ?>
         </div>
         <!-- End user-menu -->
+        <div id="light">
+            <a href="<?php echo base_url('profile'); ?>">Profiel</a>
+            <br>
+            <a href="<?php echo base_url('profile/all'); ?>">Ledenlijst</a>
+            <br>
+            <a href="<?php echo base_url('login/logout'); ?>">Logout</a>
+        </div>
+        <div id="fade" onClick="lightbox_close();"></div>
         <nav><!-- Start menu -->
             <ul class="menu">
                 <li><a href="<?php echo base_url('welcome'); ?>">Startpagina</a></li>

@@ -35,11 +35,11 @@ for ($i = 0; $i < count($result); $i++) {
             case 4:
                 echo 'In media:';
                 break;
-                
+
         }
         echo '</h1>';
 
-        echo '<table border="2" width="100%">';
+        echo '<table>';
 
         //get fieldnames table
         $fields = $table->list_fields();
@@ -67,11 +67,11 @@ for ($i = 0; $i < count($result); $i++) {
                 case 'message':
                     echo '<th>Preview bericht</th>';
                     break;
-                
+
                 //In case all previous failed, should not be called 
                 //(unless no different translation)
                 default:
-                    echo '<th>'. ucfirst($fields[$k]) . '</th>';
+                    echo '<th>' . ucfirst($fields[$k]) . '</th>';
             }
         }
         echo '</tr>';
@@ -86,7 +86,7 @@ for ($i = 0; $i < count($result); $i++) {
                 //for match in switch else normal print
                 switch ($fields[$j]) {
                     case 'avatar':
-                        echo '<td><img class="avatar" src="' . base_url() . 'assets/images/avatars/' . $row->$fields[$j] . '" alt="Avatar" width="150"/></td>';
+                        echo '<td><img class="avatarThumbmail" src="' . base_url() . 'assets/images/avatars/' . $row->$fields[$j] . '" alt="Avatar" width="150"/></td>';
                         break;
                     case 'user_id':
                         $user_id = $row->$fields[$j];
@@ -116,7 +116,7 @@ for ($i = 0; $i < count($result); $i++) {
                         //display only first 160 characters
                         //check if text is longer -> add '..'
                         $message = substr($row->$fields[$j], 0, 160);
-                        if ($message < count_chars($row->$fields[$j])){
+                        if ($message < count_chars($row->$fields[$j])) {
                             $message .= '..';
                         }
                         echo '<td>' . $message . '</td>'; //Need to shorten this, only show i.e. 160 characters, maybe anchorlink this
@@ -127,7 +127,7 @@ for ($i = 0; $i < count($result); $i++) {
             }
             echo '</tr>';
         }
-        echo '</table></br>';
+        echo '</table>';
     }
 }
 ?>

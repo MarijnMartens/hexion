@@ -17,12 +17,12 @@ References: none
         $edit = false;
         ?>
         <tr <?php echo $alt; ?>>
-        <td><?php echo $reply->date; ?></td>
+            <td><?php echo $reply->date; ?></td>
             <td><?php
                 $edit = false;
                 if ($reply->username != NULL) {
                     echo '<a href="' . base_url("profile/view/$reply->user_id") . '">' . $reply->username . '</a>';
-                    echo '<img class="avatar" src="' . base_url() . 'assets/images/avatars/' . $reply->avatar . '" alt="Avatar" width="150"/>'; 
+                    echo '<img class="avatarThumbmail" src="' . base_url() . 'assets/images/avatars/' . $reply->avatar . '" alt="Avatar" width="150"/>';
                     if ($reply->user_id == $this->session->userdata('user_id')) {
                         $edit = true;
                     } else if ($this->session->userdata('level') >= 3) {
@@ -38,7 +38,7 @@ References: none
             <td><?php echo nl2br($reply->message); ?></td>
             <?php if ($edit == true && $reply->mod_break == false) { ?>
                 <td><a href="<?php echo base_url("forum/editReply/$reply->id"); ?>">Edit reply</a></td>
-            <?php } ?> 
+            <?php } ?>
         </tr>
     <?php } ?>
 </table>
