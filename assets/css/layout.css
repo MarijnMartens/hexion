@@ -9,7 +9,8 @@ html, body {
     padding:0;
     height:100%;
     font-family: Calibri;
-    background-image: url("../images/wood.jpg");
+    background-image: url("../images/wood_low.jpg");
+    background-image: url("../images/wood_medium.jpg");
 
 }
 
