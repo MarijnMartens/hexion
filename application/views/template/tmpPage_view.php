@@ -8,42 +8,39 @@ if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 ?>
 
-<?php 
+<?php
 //Load custom view, done this way to display a view within this template view
 //This way I can create multiple 'islands', need for ie the homepage
 $this->load->view('template/tmpHeader_view');
 ?>
 
-<?php 
-if(!(isset($aside_visible))){
+<?php
+if (!(isset($aside_visible))) {
     $aside_display = '';
 } else {
     $aside_display = 'style="display: none;"';
 }
 ?>
-<!-- Hide / Show article -->
-<!--<script>
-    $(document).ready(function()
-    {
-        var toggle = true;
-        var txt = '';
-        $('.toggle').click(function()
-        {
-            txt = $(this).text();
-            //Hide / show next element
-            $(this).next().slideToggle("slow");
-            /*if (toggle == true) {
-                $(this).text(txt.replace('▲', '▼'));
-                toggle = false;
-            } else {
-                $(this).text(txt.replace('▼', '▲'));
-                toggle = true;
-            }*/
+    <!-- Hide / Show article -->
+    <script>
+        $(document).ready(function () {
+            var toggle = true;
+            var txt = '';
+            $('.toggle').click(function () {
+                //txt = $(this).text();
+                //Hide / show next element
+                $(this).next().slideToggle("slow");
+                /*if (toggle == true) {
+                 $(this).text(txt.replace('▲', '▼'));
+                 toggle = false;
+                 } else {
+                 $(this).text(txt.replace('▼', '▲'));
+                 toggle = true;
+                 }*/
+            });
         });
-    });
-</script>-->
-
-<?php 
+    </script>
+<?php
 //Load custom view, done this way to display a view within this template view
 //This way I can create multiple 'island', need for ie the homepage
 $this->load->view($view);
@@ -70,9 +67,10 @@ $this->load->view($view);
                 }
             }(document, "script", "twitter-wjs");</script>
     </div><!-- End Twitter timeline -->
-</aside>*/ ?>
+</aside>*/
+?>
 
-<?php 
+<?php
 //Load custom view, done this way to display a view within this template view
 //This way I can create multiple 'island', need for ie the homepage
 //$this->load->view('template/tmpFooter_view');
