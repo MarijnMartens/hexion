@@ -29,6 +29,7 @@ html, body {
     padding:0;
     height:100%;
     font-family: Calibri;
+    background-image: url("../images/wood.png");
 
 }
 
@@ -105,6 +106,7 @@ article p:first-child{
 }
 
 #logo {
+    margin: 10px;
     position: absolute;
 
 }
@@ -118,7 +120,7 @@ nav {
 
 nav ul {
     list-style: none;
-    width: 100%;
+    width: 820px;
     margin: 0 auto;
     padding: 0;
 }
@@ -127,7 +129,7 @@ nav ul li {
     float: left;
 }
 
-nav a:link, nav a:visited, #search {
+nav a:link, nav a:visited, #search, #searchSubmit {
     display: block;
     width: 120px;
     font-weight: bold;
@@ -138,12 +140,17 @@ nav a:link, nav a:visited, #search {
     text-decoration: none;
 }
 
-#search {
+#search, #searchSubmit {
     font-family: Calibri;
     font-size: medium;
     border: none;
-    width: 120px;
+    width: 90px;
     float: left;
+}
+
+#searchSubmit {
+    background-color: black;
+    width: 30px;
 }
 
 nav a:hover, nav a:active, nav a:focus, #search {
@@ -152,7 +159,8 @@ nav a:hover, nav a:active, nav a:focus, #search {
 
 .login_menu {
     width: auto;
-    margin: 20px;
+    margin-top: 10px;
+    margin-right: 20px;
     float: right;
     padding: 0;
 }
@@ -170,7 +178,7 @@ nav a:hover, nav a:active, nav a:focus, #search {
 
 .login_menu a:link, .login_menu a:visited {
     display: block;
-    width: 120px;
+    width: 80px;
     font-weight: bold;
     color: #FFFFFF;
     background-color: #25903b;

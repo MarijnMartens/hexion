@@ -66,7 +66,8 @@ if (!defined('BASEPATH'))
             </ul>
             <!-- Search form -->
             <form action="<?php echo base_url('search'); ?>" method="post">
-                <input type="text" id="search" name="search" placeholder="&#128269 Zoeken" size="25"/>
+                <input type="text" id="search" name="search" placeholder="Zoeken" size="25"/>
+                <input type="submit" id="searchSubmit" value="&#128269" name="submit"/>
             </form>
             <nav><!-- End meu -->
     </header>
