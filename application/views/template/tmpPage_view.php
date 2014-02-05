@@ -21,8 +21,9 @@ if (!(isset($aside_visible))) {
     $aside_display = 'style="display: none;"';
 }
 ?>
-    <!-- Hide / Show article -->
+
     <script>
+        // Hide / Show article
         $(document).ready(function () {
             var toggle = true;
             var txt = '';
@@ -39,7 +40,11 @@ if (!(isset($aside_visible))) {
                  }*/
             });
         });
+        // End hide/show article
     </script>
+
+
+
 <?php
 //Load custom view, done this way to display a view within this template view
 //This way I can create multiple 'island', need for ie the homepage
