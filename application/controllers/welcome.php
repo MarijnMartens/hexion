@@ -10,9 +10,11 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Welcome extends CI_Controller {
+class Welcome extends CI_Controller
+{
 
-    public function message() {
+    public function message()
+    {
         $bodyData['title'] = 'Boodschap van algemeen nut';
         //If we forget to set up a flash_session
         try {
@@ -25,7 +27,8 @@ class Welcome extends CI_Controller {
         $this->load->view('template/tmpPage_view', $bodyData);
     }
 
-    public function index() {
+    public function index()
+    {
         $this->load->model('homepage_model');
         $result = $this->homepage_model->getAll();
         $bodyData['title'] = 'Index';
@@ -34,20 +37,28 @@ class Welcome extends CI_Controller {
         $this->load->view('template/tmpPage_view', $bodyData);
     }
 
-    public function info() {
+    public static function indexProcess()
+    {
+
+    }
+
+    public function info()
+    {
         $bodyData['title'] = 'Info';
         $bodyData['view'] = 'info_view';
         $this->load->view('template/tmpPage_view', $bodyData);
     }
 
-    public function event() {
+    public function event()
+    {
         $bodyData['title'] = 'Events';
         $bodyData['view'] = 'event_view';
         $this->load->view('template/tmpPage_view', $bodyData);
     }
 
     //Load contact form or redisplay when false input / captcha failed
-    public function contact($error = NULL) {
+    public function contact($error = NULL)
+    {
         //call captcha-library
         $this->load->library('MyCaptcha');
         //Call form validation-library
@@ -106,7 +117,8 @@ class Welcome extends CI_Controller {
     }
 
     //process contact
-    public function contactProcess() {
+    public function contactProcess()
+    {
         //call captcha-library
         $this->load->library('MyCaptcha');
         //Call form validation-library
@@ -114,23 +126,23 @@ class Welcome extends CI_Controller {
         $this->form_validation->set_error_delimiters('<span class="error">', '</span>');
         //Input field validation
         $this->form_validation->set_rules(
-                'name', 'Naam', 'required|'
-                . 'min_length[3]|'
-                . 'max_length[30]'
+            'name', 'Naam', 'required|'
+            . 'min_length[3]|'
+            . 'max_length[30]'
         );
         $this->form_validation->set_rules(
-                'email', 'Email adres', 'required|'
-                . 'valid_email'
+            'email', 'Email adres', 'required|'
+            . 'valid_email'
         );
         $this->form_validation->set_rules(
-                'subject', 'Onderwerp', 'required|'
-                . 'min_length[3]|'
-                . 'max_length[100]'
+            'subject', 'Onderwerp', 'required|'
+            . 'min_length[3]|'
+            . 'max_length[100]'
         );
         $this->form_validation->set_rules(
-                'message', 'Bericht', 'required|'
-                . 'min_length[3]|'
-                . 'max_length[2000]'
+            'message', 'Bericht', 'required|'
+            . 'min_length[3]|'
+            . 'max_length[2000]'
         );
 
         //Validation form
@@ -144,9 +156,9 @@ class Welcome extends CI_Controller {
             } else { //captcha is ok, send mail
                 $this->load->model('email_model');
                 $result = $this->email_model->mail(
-                        'contact@hexioners.be', 'VOS@50eten', 'Contact Hexioners.be ' . $this->input->post('subject'), 'Geschreven door: ' . ucfirst($this->input->post('name')) . '</br>'
-                        . 'Email: <a href="mailto:' . $this->input->post('email') . '">Send back</a><br/>'
-                        . nl2br($this->input->post('message'))
+                    'contact@hexioners.be', 'VOS@50eten', 'Contact Hexioners.be ' . $this->input->post('subject'), 'Geschreven door: ' . ucfirst($this->input->post('name')) . '</br>'
+                    . 'Email: <a href="mailto:' . $this->input->post('email') . '">Send back</a><br/>'
+                    . nl2br($this->input->post('message'))
                 );
                 if (!$result) { //Model did not insert data in database
                     $error = 'Bericht kon niet verzonden worden, probeer het zodadelijk nogmaals';
@@ -154,7 +166,7 @@ class Welcome extends CI_Controller {
                 } else {
                     $this->session->set_flashdata('message', 'Bericht verzonden, je krijgt ASAP een antwoord');
                     redirect('welcome/message');
-                } 
+                }
             }
         }
     }

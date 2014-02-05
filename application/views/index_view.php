@@ -8,7 +8,8 @@ References: Official Twitter developer manual
 <?php
 foreach ($result as $row) {
     echo '<div class="island" id="' . $row->id . '">';
-    echo '<h2 class="toggle">' . $row->title . '</h2>';
+    //echo '<h2 class="toggle">' . $row->title . '</h2>';
+    echo '<h2' . $row->title . '</h2>';
     echo '<article>';
     echo '<p>' . $row->username . ' ' . $row->date . '</p>';
     echo '<p>' . $row->message . '</p>';

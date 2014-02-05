@@ -33,6 +33,11 @@ class Forum extends CI_Controller {
         $result = $this->forum_model->getForums($level);
         //Check if all data is available otherwise display unknown
         foreach ($result as $row) {
+            //different background-color tr in table
+            $alt = null;
+            if ($row->id % 2) {
+                $alt = 'class="alt"';
+            }
             $forum_id = $row->id;
             //Get data regarding last submitted reply somewhere in a topic in the forum
             $lastReply_result = $this->lastReplyForum($forum_id);
@@ -54,8 +59,8 @@ class Forum extends CI_Controller {
             }
             //rows to userscreen
             $result = (
-                    '<tr>' .
-                    '<td><a href="' . base_url() . 'forum/topics/' . $forum_id . '">' . $row->title . '</a><br/>' .
+                '<tr ' . $alt . ' >' .
+                '<td><a href="' . base_url() . 'forum/topics/' . $forum_id . '">' . $row->title . '</a><br/>' .
                     $row->description . '</td>' .
                     '<td><b>' . $this->countTopics($forum_id) . '</b> topics<br/><b>' .
                     $this->countRepliesForum($forum_id) . '</b> antwoorden</td>' .
@@ -90,6 +95,11 @@ class Forum extends CI_Controller {
         if ($result != NULL) {
             //Display data for each topic
             foreach ($result as $row) {
+                //different background-color tr in table
+                $alt = null;
+                if ($row->id % 2) {
+                    $alt = 'class="alt"';
+                }
                 $topic_id = $row->id;
                 //Get data of lastreply in this topic
                 $lastReply_result = $this->reply_model->getLast($topic_id);
@@ -110,8 +120,8 @@ class Forum extends CI_Controller {
                 }
                 $startTopicDate = date('d/m/Y H:i', strtotime($row->date));
                 $result[0] = (
-                        '<tr>' .
-                        '<td><a href="' . base_url() . 'forum/replies/' . $topic_id . '">' . $row->title . '</a><br/>' .
+                    '<tr ' . $alt . ' >' .
+                    '<td><a href="' . base_url() . 'forum/replies/' . $topic_id . '">' . $row->title . '</a><br/>' .
                         'Aangemaakt: <b>' . $row->username . '</b><br/>' .
                         $startTopicDate . '</td>' .
                         '<td><b>' . $this->getViews($topic_id) . '<b/> bezocht<br/>' .
