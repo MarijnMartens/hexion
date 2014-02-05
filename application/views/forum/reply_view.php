@@ -6,13 +6,18 @@ References: none
 
 <h1>Replies</h1>
 <p><a href="<?php echo base_url('forum/insertReply'); ?>">Insert new reply</a></p>
-<table border='1'>
+<table>
     <?php echo "$count Replies"; ?>
     <?php foreach ($replies as $reply) {
+        //different background-color tr in table
+        $alt = null;
+        if ($reply->id % 2) {
+            $alt = 'class="alt"';
+        }
         $edit = false;
         ?>
-        <tr>
-            <td><?php echo $reply->date; ?></td>
+        <tr <?php echo $alt; ?>>
+        <td><?php echo $reply->date; ?></td>
             <td><?php
                 $edit = false;
                 if ($reply->username != NULL) {

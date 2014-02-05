@@ -8,8 +8,8 @@ References: none
     exit('No direct script access allowed'); ?>
 
 <h1>Forums</h1>
-<table border='1'>
-    <?PHP
+<table>
+<?PHP
     //Print all forums where user_level >= forum_level
     foreach ($forums as $forum) {
         echo $forum;
