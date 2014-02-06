@@ -227,11 +227,13 @@ section {
 
 /* Contains page-content */
 article {
-    /* Article width = section - passing (2*5) - border (2*3) = 754 */
-    padding: 5px;
     border: solid 3px #25903b;
     border-radius: 10px;
     margin-bottom: 10px;
+}
+
+.content {
+    padding: 0 10px 0 10px;
 }
 
 /* Contains Event-calendar / Twitter timeline */

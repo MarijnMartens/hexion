@@ -121,6 +121,7 @@ class Login extends CI_Controller
             $passwordConfField = array(
                 'name' => 'passwordConf',
                 'id' => 'passwordConf',
+                'placeholder' => 'Herhaal wachtwoord',
                 'value' => set_value('passwordConf')
             );
             $emailField = array(

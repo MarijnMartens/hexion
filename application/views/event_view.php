@@ -5,5 +5,11 @@
  */
 ?>
 
-<h1>Evenementen</h1>
+<h2>Evenementen</h2>
+<div class="content">
+    <p>
+    </p>
+
+    <p>TBD</p>
+</div>
 

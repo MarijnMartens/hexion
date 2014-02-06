@@ -28,16 +28,19 @@ input {
     font-family: sans-serif;
 }
 
-/*displays cursor 'hand' when hovering over title island to indicate toggle*/
-h2.toggle {
-    cursor: pointer;
-    background: #25903b;
+h2 {
+    background-color: #25903b;
     font-size: 1em;
     text-transform: uppercase;
-    color: lightgray;
+    color: #ffffff;
     margin: 0;
     padding-left: 10px;
     font-weight: normal;
+}
+
+.toggle {
+    /*displays cursor 'hand' when hovering over title island to indicate toggle*/
+    cursor: pointer;
 }
 
 article p:first-child {
@@ -50,16 +53,34 @@ table {
 }
 
 tr.alt {
-    background-color: white;
+    background-color: rgba(0, 0, 0, 0.03);
 }
 
 tr {
     padding: 10px;
-    background-color: rgba(0, 0, 0, 0.02);
+}
+
+td.forum {
+    min-height: 7em;
+}
+
+/* table for forms */
+.form {
+    margin-left: auto;
+    margin-right: auto;
+    width: auto;
+}
+
+.form td {
+    vertical-align: top;
+}
+
+.form .right {
+    text-align: right;
 }
 
 .submit, .blackLink:link, .blackLink:visited {
-    margin: 0.5em;
+    margin: 0.5em 0.5em 0 0;
     display: inline-block;
     font-weight: bold;
     color: #FFFFFF;

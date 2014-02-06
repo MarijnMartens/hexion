@@ -3,59 +3,57 @@ Author: Marijn
 Created on: 20/12/2013
 References: none
 -->
-<h1>Info pagina</h1>
-<p>Nederlanders en Belgen zijn gemiddeld meer geld kwijt voor triple-play pakketten met internet, tv en telefonie dan
-    inwoners van omringende landen. Dat blijkt uit een inventarisatie van de tarieven door de Belgische toezichthouder
-    Bipt.
+<h2>Hexion ?</h2>
 
-    De mediaanprijs voor een pakket voor vaste telefonie, tv en internet met een minimale downloadsnelheid van 30Mbit/s
-    is in Nederland rond 60 euro, in België is dat zelfs 76 euro. Dat is een stuk meer dan Fransen kwijt zijn voor
-    dezelfde diensten: die betalen bij een gemiddeld pakket ongeveer 36 euro, Duitsers 44 euro. Spanje is wel weer
-    duurder, met een mediaanprijs van rond 97 euro voor datzelfde pakket.
+<div class="content">
+    <p></p>
 
-    De Belgische toezichthouder Bipt, die de cijfers publiceerde als onderzoek naar de tarieven in eigen land, baseert
-    zich op onderzoek van de economische unie OESO van augustus vorig jaar. In Nederland zijn KPN, Tele2, Ziggo en UPC
-    in het onderzoek meegenomen, in België zijn dat Belgacom, Numericable, Telenet en Voo.
+    <p>
+        Hexion is een opkomende studentenvereniging van departement PXL-IT.<br/>
+        Wij zijn een vereniging voor en door studenten. Bij ons kan je tevens ook terecht
+        voor problemen met je lessen, extra informatie, we halen projecten naar boven
+        waar je praktijkpunten mee kan verdienen en nog veel meer!<br/>
+        Daarlangs komt Hexion ook naarbuiten als een echte studentenvereniging, Zo
+        leren we je Hasselt en omstreken kennen zoals een echte student het bevalt :)
+    </p>
+</div>
+</article>
+<article>
+    <h2>Eeuwig Hexion: Het lied van Koppelstock</h2>
 
-    Uit het onderzoek, dat ook ging over tarieven voor mobiele diensten, blijkt dat de prijs die Belgen moeten betalen
-    voor bellen en mobiel internet aan het dalen zijn. België is daarbij goedkoper dan bijvoorbeeld Nederland. In beide
-    landen zijn alleen prijzen van grote providers meegenomen, terwijl die van prijsvechters ontbreken. In Nederland
-    kiezen juist steeds meer mensen voor een abonnement bij een prijsvechter.
-</p>
-<p>Nederlanders en Belgen zijn gemiddeld meer geld kwijt voor triple-play pakketten met internet, tv en telefonie dan
-    inwoners van omringende landen. Dat blijkt uit een inventarisatie van de tarieven door de Belgische toezichthouder
-    Bipt.
+    <div class="content">
+        <p>A.J. Schooleman</p>
 
-    De mediaanprijs voor een pakket voor vaste telefonie, tv en internet met een minimale downloadsnelheid van 30Mbit/s
-    is in Nederland rond 60 euro, in België is dat zelfs 76 euro. Dat is een stuk meer dan Fransen kwijt zijn voor
-    dezelfde diensten: die betalen bij een gemiddeld pakket ongeveer 36 euro, Duitsers 44 euro. Spanje is wel weer
-    duurder, met een mediaanprijs van rond 97 euro voor datzelfde pakket.
+        <div style="text-align: center">
+            <p></p>
 
-    De Belgische toezichthouder Bipt, die de cijfers publiceerde als onderzoek naar de tarieven in eigen land, baseert
-    zich op onderzoek van de economische unie OESO van augustus vorig jaar. In Nederland zijn KPN, Tele2, Ziggo en UPC
-    in het onderzoek meegenomen, in België zijn dat Belgacom, Numericable, Telenet en Voo.
+            <p>
+                Een informaticus is lui dat weet iedereen<br/>
+                En toch heeft hij steeds massa's werk<br/>
+                Uiterst geniaal ja dat zie je meteen<br/>
+                Wie had ooit gedacht oh zo sterk<br/>
+                In de nacht werkt hij door tot de zon weer op komt<br/>
+                Geen teken van leven, maar toch kerngezond
+            </p>
 
-    Uit het onderzoek, dat ook ging over tarieven voor mobiele diensten, blijkt dat de prijs die Belgen moeten betalen
-    voor bellen en mobiel internet aan het dalen zijn. België is daarbij goedkoper dan bijvoorbeeld Nederland. In beide
-    landen zijn alleen prijzen van grote providers meegenomen, terwijl die van prijsvechters ontbreken. In Nederland
-    kiezen juist steeds meer mensen voor een abonnement bij een prijsvechter.
-</p>
-<p>Nederlanders en Belgen zijn gemiddeld meer geld kwijt voor triple-play pakketten met internet, tv en telefonie dan
-    inwoners van omringende landen. Dat blijkt uit een inventarisatie van de tarieven door de Belgische toezichthouder
-    Bipt.
+            <p>
+                De informaticus leeft, hij is hier!<br/>
+                De informaticus leeft, geef hem bier!
+            </p>
 
-    De mediaanprijs voor een pakket voor vaste telefonie, tv en internet met een minimale downloadsnelheid van 30Mbit/s
-    is in Nederland rond 60 euro, in België is dat zelfs 76 euro. Dat is een stuk meer dan Fransen kwijt zijn voor
-    dezelfde diensten: die betalen bij een gemiddeld pakket ongeveer 36 euro, Duitsers 44 euro. Spanje is wel weer
-    duurder, met een mediaanprijs van rond 97 euro voor datzelfde pakket.
+            <p>
+                Hexion beveelt je gooi open je poort<br/>
+                Een informaticus wenst een netwerk<br/>
+                Xie hij verlangt naar een digitaal oord<br/>
+                Internet dat is zijn strijdperk<br/>
+                Open of er wordt een virus verspreid<br/>
+                Nee je systeem is hier niet mee gevleid
+            </p>
 
-    De Belgische toezichthouder Bipt, die de cijfers publiceerde als onderzoek naar de tarieven in eigen land, baseert
-    zich op onderzoek van de economische unie OESO van augustus vorig jaar. In Nederland zijn KPN, Tele2, Ziggo en UPC
-    in het onderzoek meegenomen, in België zijn dat Belgacom, Numericable, Telenet en Voo.
-
-    Uit het onderzoek, dat ook ging over tarieven voor mobiele diensten, blijkt dat de prijs die Belgen moeten betalen
-    voor bellen en mobiel internet aan het dalen zijn. België is daarbij goedkoper dan bijvoorbeeld Nederland. In beide
-    landen zijn alleen prijzen van grote providers meegenomen, terwijl die van prijsvechters ontbreken. In Nederland
-    kiezen juist steeds meer mensen voor een abonnement bij een prijsvechter.
-</p>
+            <p>
+                Hexion eist toegang, geef hier!<br/>
+                Hexion heeft toegang, geef bier!
+            </p>
+        </div>
+    </div>
 

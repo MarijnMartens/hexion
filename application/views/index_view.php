@@ -10,20 +10,20 @@ References: Official Twitter developer manual
 //In template the opening and closing tags are defined to allow easier creating of files
 for ($i = 0; $i < count($result); $i++) {
     if ($i == count($result) - 1) {
-        echo '<div class="island" id="' . $result[$i]->id . '">';
+        //echo '<div class="island" id="' . $result[$i]->id . '">';
         //echo '<h2 class="toggle">' . $row->title . '</h2>';
-        echo '<h2' . $result[$i]->title . '</h2>';
-        echo '<div>';
+        echo '<h2>' . $result[$i]->title . '</h2>';
+        echo '<div class="content">';
         echo '<p>' . $result[$i]->username . ' ' . $result[$i]->date . '</p>';
-        echo '<p>' . $result[$i]->message . '</p>';
+        echo '<p>' . nl2br($result[$i]->message) . '</p>';
         echo '</div>';
     } else {
-        echo '<div class="island" id="' . $result[$i]->id . '">';
+        //echo '<div class="island" id="' . $result[$i]->id . '">';
         //echo '<h2 class="toggle">' . $row->title . '</h2>';
-        echo '<h2' . $result[$i]->title . '</h2>';
-        echo '<div>';
+        echo '<h2>' . $result[$i]->title . '</h2>';
+        echo '<div class="content">';
         echo '<p>' . $result[$i]->username . ' ' . $result[$i]->date . '</p>';
-        echo '<p>' . $result[$i]->message . '</p>';
+        echo '<p>' . nl2br($result[$i]->message) . '</p>';
         echo '</div>';
         echo '</article>';
         echo '<article>';
