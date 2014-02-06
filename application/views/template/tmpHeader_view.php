@@ -21,9 +21,15 @@ if (!defined('BASEPATH'))
     <!-- Get icon -->
     <?PHP echo link_tag('assets/images/logo.ico', 'shortcut icon', 'image/ico'); ?>
     <!-- Get css -->
-    <?PHP echo link_tag("assets/css/layout.css"); ?>
+    <?PHP
+    echo link_tag("assets/css/layout.css");
+    echo link_tag("assets/css/text.css");
+    //Webkit fixes
+    echo '<link rel="stylesheet" href="assets/css/webkit.css" type="text/chrome/safari';
+    ?>
     <!-- Download jquery if not on computer -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <!-- Css popup script -->
     <script>
         window.document.onkeydown = function (e) {
             if (!e) {
@@ -42,12 +48,13 @@ if (!defined('BASEPATH'))
             document.getElementById('light').style.display = 'none';
             document.getElementById('fade').style.display = 'none';
         }
-
     </script>
 
 </head>
 <body>
+<!-- Start container -->
 <div id="container">
+    <!-- Start Header containing menu's / logo -->
     <header>
         <!-- Get logo -->
         <div id="logo">
@@ -55,19 +62,27 @@ if (!defined('BASEPATH'))
                                                               alt="logo" height="100"/></a>
         </div>
 
-        <div class='user_menu'><!-- Start user-menu -->
+        <!-- Start user-menu -->
+        <div class='user_menu'>
+            <!-- Start List Links User_menu -->
             <ul>
+                <!-- Dispay either login links or display username -->
                 <?php if ($this->session->userdata('validated') == TRUE) { ?>
-
+                    <!-- User logged in, display username -->
                     <li><a href="#"
                            onclick="lightbox_open();">Hallo <?php echo $this->session->userdata('username'); ?></a></li>
                 <?php } else { ?>
+                    <!-- User NOT logged in, display login/register buttons -->
                     <li><a href="<?php echo base_url('login'); ?>">Login</a></li>
                     <li><a href="<?php echo base_url('login/register'); ?>">Registreer</a></li>
                 <?php } ?>
+                <!-- End List Links User_menu -->
             </ul>
         </div>
+        <div class="clear"></div>
         <!-- End user-menu -->
+
+        <!-- Start Display css-popup containing userProfile actions -->
         <div id="light">
             <a href="<?php echo base_url('profile'); ?>">Profiel</a>
             <br>
@@ -75,20 +90,32 @@ if (!defined('BASEPATH'))
             <br>
             <a href="<?php echo base_url('login/logout'); ?>">Logout</a>
         </div>
+        <!-- End Display css-popup userProfile action -->
+        <!-- Fade rest webpage -->
         <div id="fade" onClick="lightbox_close();"></div>
-        <nav><!-- Start menu -->
-            <ul class="menu">
+        <!-- End Fade -->
+
+        <!-- Start Main-menu -->
+        <nav>
+            <!-- Start List Links Main-menu -->
+            <ul>
                 <li><a href="<?php echo base_url('welcome'); ?>">Startpagina</a></li>
                 <li><a href="<?php echo base_url('forum'); ?>">Forum</a></li>
                 <li><a href="<?php echo base_url('event'); ?>">Evenementen</a></li>
                 <li><a href="<?php echo base_url('welcome/info'); ?>">Info</a></li>
                 <li><a href="<?php echo base_url('welcome/contact'); ?>">Contact</a></li>
                 <li><a href="<?php echo base_url('welcome/multimedia'); ?>">Multimedia</a></li>
+                <!-- End List Links Main-menu -->
             </ul>
-            <!-- Search form -->
+            <!-- Start Search form -->
             <form action="<?php echo base_url('search'); ?>" method="post">
                 <input type="text" id="search" name="search" placeholder="Zoeken" size="25"/>
                 <input type="submit" id="searchSubmit" value="&#128269" name="submit"/>
+                <!-- End Search form -->
             </form>
-            <nav><!-- End meu -->
+            <!-- End Main-menu -->
+        </nav>
+        <div class="clear"></div>
+
+        <!-- End Header -->
     </header>

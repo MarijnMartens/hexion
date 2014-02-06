@@ -15,15 +15,15 @@ $this->load->view('template/tmpHeader_view');
 ?>
 
 <?php
+//Display aside: default = Yes
 if (!(isset($aside_visible))) {
     $aside_display = '';
 } else {
     $aside_display = 'style="display: none;"';
 }
 ?>
-
+    <!-- Script Toggle article -->
     <script>
-        // Hide / Show article
         $(document).ready(function () {
             var toggle = true;
             var txt = '';
@@ -40,8 +40,8 @@ if (!(isset($aside_visible))) {
                  }*/
             });
         });
-        // End hide/show article
     </script>
+    <!-- Script Twitter timeline -->
     <script>!function (d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
             if (!d.getElementById(id)) {
@@ -50,30 +50,50 @@ if (!(isset($aside_visible))) {
                 js.src = p + "://platform.twitter.com/widgets.js";
                 fjs.parentNode.insertBefore(js, fjs);
             }
-        }(document, "script", "twitter-wjs");</script>
+        }(document, "script", "twitter-wjs");
+    </script>
 
+    <!-- Start container for page-content -->
     <div id="page">
-        <section>
-            <?php
-            //Load custom view, done this way to display a view within this template view
-            //This way I can create multiple 'island', need for ie the homepage
-            $this->load->view($view);
-            ?>
-        </section>
-        <aside <?php echo $aside_display; ?>>
-            <div id="twitter"><!-- Start Twitter timeline -->
-                <div id="twitter-timeline">
-                    <a class="twitter-timeline"
-                       width="200"
-                       height="500"
-                       data-link-color="#1c8017"
-                       data-chrome="nofooter noscrollbar"
-                       href="https://twitter.com/Marijn_Martens"
-                       data-widget-id="416921452827275264">Tweets by @Marijn_Martens</a>
-                </div>
 
-            </div><!-- End Twitter timeline -->
+        <!-- Start Content page -->
+        <section>
+            <!-- Section can contain multiple islands = articles (i.e. index page) but always at least 1
+            <!-- Start article> -->
+            <article>
+                <?php
+                //Load custom view, done this way to display a view within this template view
+                //This way I can create multiple 'island', need for ie the homepage
+                $this->load->view($view);
+                ?>
+                <!-- End article -->
+            </article>
+            <!-- End Content page -->
+        </section>
+
+        <!-- Start Aside Calendar / Twitter Timeline -->
+        <aside <?php echo $aside_display; ?>>
+            <!-- Start Event calendar -->
+            <div id="event-calendar">
+
+                <!-- End Event calendar -->
+            </div>
+            <!-- Start Twitter timeline -->
+            <div id="twitter-timeline">
+                <a class="twitter-timeline"
+                   width="200"
+                   height="500"
+                   data-link-color="#1c8017"
+                   data-chrome="nofooter noscrollbar"
+                   href="https://twitter.com/Marijn_Martens"
+                   data-widget-id="416921452827275264">Tweets by @Marijn_Martens</a>
+                <!-- End Twitter timeline -->
+            </div>
+            <!-- End Aside -->
         </aside>
+        <div class="clear"></div>
+
+        <!-- End container for page-content -->
     </div>
 
 <?php

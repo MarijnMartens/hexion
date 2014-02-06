@@ -1,0 +1,13 @@
+/*
+ * Author: Marijn
+ * Created on: 08/01/2014
+ * References: none
+ */
+nav {
+    height: 1em;
+}
+
+/* Fix for Firefox */
+#search {
+    font-size: medium;
+}

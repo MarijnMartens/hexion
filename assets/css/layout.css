@@ -8,145 +8,89 @@ html, body {
     padding: 0;
     height: 100%;
     font-family: Calibri;
+    /* Background, color in case image does not load */
+    background-color: #1e1e1e;
     background-image: url("../images/wood_medium.jpg");
 }
 
+/* Container div contains entire page: Header / Page / Footer */
 #container {
-    position: relative; /* Zelfde positie op pagina maar centreer het (dmv margin) ipv links */
-    min-height: 100%; /* volledige hoogte */
-    width: 1000px; /* breedte pagina */
-    margin-left: auto; /*centreer container*/
+    /* Push footer to end, fill screen */
+    min-height: 100%;
+    position: relative;
+    /* Width visible-page */
+    width: 1000px;
+    /* Center page */
+    margin-left: auto;
     margin-right: auto;
-    margin-top: 15px; /* 15px boven header leeglaten */
-    background-color: whitesmoke; /* container achtergrondkleur (lichtgrijs) */
-    border-radius: 10px; /* afronding container */
-    box-shadow: 25px 0px 25px -25px #000000, -25px 0px 25px -25px #000000; /* rechts | links shadow border */
+    /* Keep 15px empty above header */
+    margin-top: 15px;
+    /* Container background */
+    background-color: whitesmoke;
+    /* Style round borders */
+    border-radius: 10px;
+    /* right | left shadow border */
+    box-shadow: 25px 0px 25px -25px #000000, -25px 0px 25px -25px #000000;
 }
 
+.clear {
+    clear: both;
+}
+
+/* Header tag contains: Logo / User_menu / Nav */
 header {
+    /* Fixed height header */
     height: 120px;
 }
 
-/*display of avatar*/
-img.avatar {
-    max-height: 250px;
-    width: 150px;
-    border-radius: 7px;
-}
-
-/*display of thumbmail*/
-img.avatarThumbmail {
-    height: 40px;
-    width: 40px;
-    border-radius: 7px;
-}
-
-#page {
-    padding: 10px;
-    padding-bottom: 3em;
-}
-
-section {
-    margin-right: 10px;
-    width: 754px;
-    float: left;
-    padding: 5px;
-    border: solid #25903b;
-    border-radius: 10px;
-    margin-bottom: 10px;
-}
-
-#twitter {
-    width: 200px;
-    float: left;
-}
-
-/*.island{
-    width: 754px;
-    float: left;
-    padding: 5px;
-    border: solid #25903b;
-    border-radius: 10px;
-    margin-bottom: 10px;
- }*/
-
-/*vaste hoogte en breedte omdat de timeline langer duurt om in te laden,
-hiermee voorkomen we dat de pagina verschuift als de timeline klaar is*/
-#twitter-timeline {
-    min-height: 500px;
-    width: 100%;
-}
-
-footer {
-    position: absolute;
-    text-align: center;
-    bottom: 0;
-    width: 100%;
-    height: 3em;
-}
-
-.error {
-    color: red;
-    font-weight: bold;
-}
-
-/* Dit dient om textfields en passwordfiels in IE even lang te maken */
-input {
-    font-family: sans-serif;
-}
-
-article {
-    padding: 1em;
-    text-align: left;
-}
-
-/*displays cursor 'hand' when hovering over title island to indicate toggle*/
-h2.toggle {
-    cursor: pointer;
-    background: #25903b;
-    font-size: 1em;
-    text-transform: uppercase;
-    color: lightgray;
-    margin: 0;
-    padding-left: 10px;
-    font-weight: normal;
-}
-
-article p:first-child {
-    text-align: right;
-}
-
+/* Logo in Header */
 #logo {
-    margin: 10px;
+    /* Space from container */
+    margin-top: 10px;
+    margin-left: 10px;
+    /* Absolute to overflow nav-container */
     position: absolute;
 }
 
+/* Main-menu */
 nav {
+    /* Full width parent: container */
     width: 100%;
+    /* Fill from right side, eventually leaving empty space for logo to overflow */
     float: right;
-    padding: 0;
+    /* padding: 0; */
+    /* Background color dark green */
     background-color: #25903b;
 }
 
+/* List in Main-menu */
 nav ul {
+    /* Remove bullets */
     list-style: none;
+    /* 1000 - 820 = 180 left for search field and logo space */
     width: 820px;
     margin: 0 auto;
     padding: 0;
 }
 
+/* Items list in Main-menu */
 nav ul li {
+    /* Fill List from left */
     float: left;
 }
 
+/* Main-menu items layout */
 nav a:link, nav a:visited, #search, #searchSubmit {
     display: block;
+    /* For menu-links, search and searchSubmit will get custom width */
+    /* 6 (items) * 120 (width)= 720 */
     width: 120px;
     font-weight: bold;
     color: #FFFFFF;
     background-color: #25903b;
     text-align: center;
     padding: 5px;
+    /* Remove a-tag decoration */
     text-decoration: none;
 }
 
@@ -154,6 +98,7 @@ nav a:link, nav a:visited, #search, #searchSubmit {
     font-family: Calibri;
     font-size: medium;
     border: none;
+    /* searchSubmit will override */
     width: 90px;
     float: left;
 }
@@ -164,31 +109,45 @@ nav a:link, nav a:visited, #search, #searchSubmit {
     width: 30px;
 }
 
+/* Our main-menu is now: 6*120 + 8*10 (padding) + 1*90 + 1*30 = 920px
+   Leaving 80px for our logo (82px wide), small overlap with first block:   'Startpagina'
+*/
+
 nav a:hover, nav a:active, nav a:focus, #search {
     background-color: #2EC446;
 }
 
-.login_menu, .user_menu {
+/* User_menu is either login/register buttons or 'Hallo' + username-button */
+.user_menu {
+    /* Takes as much width as children need (variates based on logged in or not) */
     width: auto;
+    /* Keep 10px from top parent: container and 20px from side */
     margin-top: 10px;
     margin-right: 20px;
+    /* Start at right side parent: container */
     float: right;
-    padding: 0;
+    /*padding: 0;*/
 }
 
-.login_menu ul, .user_menu ul {
+/* List User_menu */
+.user_menu ul {
+    /* No bullets */
     list-style: none;
-    width: 100%;
+    /*width: 100%;*/
     margin: 0 auto;
-    padding: 0;
+    /*padding: 0;*/
 }
 
-.login_menu ul li, .user_menu ul li {
+/* Items List User_menu */
+.user_menu ul li {
+    /* Place items (links) next to eachother */
     float: left;
 }
 
-.login_menu a:link, .login_menu a:visited, .user_menu a:link, .user_menu a:visited {
+/* Style items = links */
+.user_menu a:link, .user_menu a:visited {
     display: block;
+    /* When long username, auto grow */
     min-width: 80px;
     font-weight: bold;
     color: #FFFFFF;
@@ -199,24 +158,11 @@ nav a:hover, nav a:active, nav a:focus, #search {
     text-decoration: none;
 }
 
-.login_menu a:hover, .login_menu a:active, .login_menu a:focus, .user_menu a:hover, .user_menu a:active, .user_menu a:focus {
+.user_menu a:hover, .user_menu a:active, .user_menu a:focus {
     background-color: #2EC446;
 }
 
-table {
-    width: 100%;
-    border-spacing: 0px;
-}
-
-tr.alt {
-    background-color: white;
-}
-
-tr {
-    padding: 10px;
-    background-color: rgba(0, 0, 0, 0.02);
-}
-
+/* Fade & Light work together for creating a 'css-popup' */
 #fade {
     display: none;
     position: fixed;
@@ -259,4 +205,49 @@ tr {
 
 #light a:hover, #light a:active, #light a:focus {
     background-color: #2EC446;
+}
+
+/* Container page includes section = pagecontent / aside = Event-calendar + Twitter-timeline */
+#page {
+    /* Page width = 1000 - 20 = 980 */
+    /* Keep off 10px from left/right side container */
+    margin-left: 10px;
+    margin-right: 10px;
+    /* Keep off 3em = height footer */
+    /* padding-bottom: 3em; */
+    margin-bottom: 3em;
+}
+
+/* Contains one or more articles = page-content */
+section {
+    /* Section width = #page - aside (200) - margin-right (10) = 770 */
+    /* Gap between articles and aside */
+    margin-right: 10px;
+    width: 770px;
+    float: left;
+}
+
+/* Contains page-content */
+article {
+    /* Article width = section - passing (2*5) - border (2*3) = 754 */
+    padding: 5px;
+    border: solid 3px #25903b;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+/* Contains Event-calendar / Twitter timeline */
+aside {
+    width: 200px;
+    float: left;
+}
+
+footer {
+    /* Push footer to end, bottom: 0 */
+    position: absolute;
+    text-align: center;
+    bottom: 0;
+    width: 100%;
+    /* Height = #page margin-bottom */
+    height: 3em;
 }

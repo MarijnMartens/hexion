@@ -1,0 +1,59 @@
+/*
+ * Author: Marijn
+ * Created on: 08/01/2014
+ * References: none
+ */
+
+/*display of avatar*/
+img.avatar {
+    max-height: 250px;
+    width: 150px;
+    border-radius: 7px;
+}
+
+/*display of thumbmail*/
+img.avatarThumbmail {
+    height: 40px;
+    width: 40px;
+    border-radius: 7px;
+}
+
+.error {
+    color: red;
+    font-weight: bold;
+}
+
+/* Make textfiels and passwordfiels same length in Internet Explorer */
+input {
+    font-family: sans-serif;
+}
+
+/*displays cursor 'hand' when hovering over title island to indicate toggle*/
+h2.toggle {
+    cursor: pointer;
+    background: #25903b;
+    font-size: 1em;
+    text-transform: uppercase;
+    color: lightgray;
+    margin: 0;
+    padding-left: 10px;
+    font-weight: normal;
+}
+
+article p:first-child {
+    text-align: right;
+}
+
+table {
+    width: 100%;
+    border-spacing: 0px;
+}
+
+tr.alt {
+    background-color: white;
+}
+
+tr {
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.02);
+}
