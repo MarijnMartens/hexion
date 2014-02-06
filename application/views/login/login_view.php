@@ -14,23 +14,7 @@ echo '<br/>';
 echo form_label('Wachtwoord', 'password');
 echo form_password($userdata['password']);
 echo '<br/>';
-echo form_submit('submit', 'Log mij nu in!');
+echo form_submit('submit', 'Log mij nu in!', 'class="submit"');
+echo '<a href="' . base_url() . '>login/password_reset" class="blackLink" >Paswoord vergeten?</a>';
 echo form_close();
 ?>
-<?php /*<form action='<?php echo base_url(); ?>login/login_process' method='post' name='process'>
-       
-    <table>
-        <tr>
-            <td><label for='username'>Gebruikersnaam</label></td>
-            <td><input type='text' name='username' id='username' size='20' /></td>
-        </tr>
-        <tr>
-            <td><label for='password'>Paswoord</label></td>
-            <td><input type='password' name='password' id='password' size='20' /></td>
-        </tr>
-        <tr>
-            <td colspan="2"><input type='submit' value='Log mij nu in!' /></td>
-        </tr>
-    </table>
-</form>*/ ?>
-<a href="<?php echo base_url(); ?>login/password_reset">Paswoord vergeten?</a>

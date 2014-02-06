@@ -28,8 +28,8 @@ if (!is_null($error)) echo "<span class='error'>$error</span><br/>";
     echo '<br/>';
     echo $captcha;
     echo '<br/>';
-    echo form_submit('submit', 'Stuur bericht naar Admin');
-    echo form_close();
+echo form_submit('submit', 'Stuur bericht naar Admin', "class='submit'");
+echo form_close();
 ?>
 
 

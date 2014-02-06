@@ -22,23 +22,6 @@ echo form_input($userdata['email']);
 echo form_error('email');
 echo '<br/>';
 echo $captcha;
-echo form_submit('submit', 'Stuur een nieuw wachtwoord!');
+echo form_submit('submit', 'Stuur een nieuw wachtwoord!', "class='submit'");
 echo form_close();
 ?>
-<?php /*<form action='<?php echo base_url(); ?>login/password_reset' method='post' name='password_reset'>
-    <?php  ?>
-    <table>
-        <tr>
-            <td><label for='username'>Gebruikersnaam</label></td>
-            <td><input type='text' name='username' id='username' size='25' /></td>
-        </tr>
-        <tr>
-            <td><label for='email'>Email adres</label></td>
-            <td><input type='text' name='email' id='email' size='25' /></td>
-        </tr>
-        <?php echo $captcha; ?>
-        <tr>
-            <td colspan="2"><input type='submit' value='Stuur een nieuw paswoord!' /></td>
-        </tr>
-    </table>
-</form>*/?>

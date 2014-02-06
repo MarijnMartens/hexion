@@ -57,3 +57,33 @@ tr {
     padding: 10px;
     background-color: rgba(0, 0, 0, 0.02);
 }
+
+.submit, .blackLink:link, .blackLink:visited {
+    margin: 0.5em;
+    display: inline-block;
+    font-weight: bold;
+    color: #FFFFFF;
+    background-color: #25903b;
+    text-align: center;
+    padding: 5px;
+    /* Remove a-tag decoration */
+    text-decoration: none;
+}
+
+.submit {
+    font-family: Calibri, sans-serif;
+    font-size: medium;
+    border: none;
+}
+
+.submit:hover, .submit:active, .submit:focus {
+    background-color: #2EC446;
+}
+
+.blackLink:link, .blackLink:visited {
+    background-color: black;
+}
+
+.blackLink:hover, .blackLink:active, .blackLink:focus {
+    background-color: #747474;
+}

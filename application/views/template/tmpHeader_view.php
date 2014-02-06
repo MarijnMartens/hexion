@@ -79,7 +79,6 @@ if (!defined('BASEPATH'))
                 <!-- End List Links User_menu -->
             </ul>
         </div>
-        <div class="clear"></div>
         <!-- End user-menu -->
 
         <!-- Start Display css-popup containing userProfile actions -->
