@@ -214,8 +214,7 @@ nav a:hover, nav a:active, nav a:focus, #search {
     margin-left: 10px;
     margin-right: 10px;
     /* Keep off 3em = height footer */
-    /* padding-bottom: 3em; */
-    margin-bottom: 3em;
+    padding-bottom: 3em;
 }
 
 /* Contains one or more articles = page-content */
