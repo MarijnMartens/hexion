@@ -7,5 +7,3 @@ References: none
 <?php
 
 echo $message;
-
-?>

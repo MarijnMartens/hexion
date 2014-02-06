@@ -46,7 +46,7 @@ article p:first-child {
 
 table {
     width: 100%;
-    border-spacing: 0px;
+    border-spacing: 0;
 }
 
 tr.alt {

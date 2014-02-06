@@ -26,7 +26,7 @@ if (!(isset($aside_visible))) {
     <script>
         $(document).ready(function () {
             var toggle = true;
-            var txt = '';
+            //var txt = '';
             $('.toggle').click(function () {
                 //txt = $(this).text();
                 //Hide / show next element

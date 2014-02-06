@@ -6,11 +6,13 @@
  * References: none
  */
 
-class Search_model extends CI_Model {
+class Search_model extends CI_Model
+{
 
     //function to get LIMITED userdata
     //to use when other members request info about other user
-    public function getUsernames() {
+    public function getUsernames()
+    {
         $this->db->select('id, username');
         $this->db->order_by('username', 'asc');
         $query = $this->db->get('user');
@@ -23,7 +25,8 @@ class Search_model extends CI_Model {
     }
 
     //return public userdata
-    public function getUserdata($user_id) {
+    public function getUserdata($user_id)
+    {
         $this->db->select('id, username, level, fName, lName, gender, dateOfBirth, city, avatar');
         $this->db->where('id', $user_id);
         $query = $this->db->get('user');
@@ -36,7 +39,8 @@ class Search_model extends CI_Model {
     }
 
     //search whatever you want
-    public function getAll($keyword) {
+    public function getAll($keyword)
+    {
         //search in tables
         $result[0] = $this->searchUser($keyword);
         //$result[1] = $this->searchForum($keyword);
@@ -47,7 +51,8 @@ class Search_model extends CI_Model {
     }
 
     //search in table USER
-    private function searchUser($keyword) {
+    private function searchUser($keyword)
+    {
         $this->db->select('id as user_id, username, avatar');
         $array = array(
             'username' => $keyword,
@@ -67,7 +72,7 @@ class Search_model extends CI_Model {
     }
 
     //search in table FORUM
-    private function searchForum($keyword) {
+    /*private function searchForum($keyword) {
         $this->db->select('id as forum_id, title as forum_title, description, level');
         $array = array(
             'title' => $keyword,
@@ -81,10 +86,11 @@ class Search_model extends CI_Model {
         } else {
             return false;
         }
-    }
+    }*/
 
     //search in table TOPIC
-    private function searchTopic($keyword) {
+    private function searchTopic($keyword)
+    {
         $this->db->select('id as topic_id, forum_id, user_id, title as topic_title, date');
         $array = array(
             'title' => $keyword,
@@ -101,7 +107,8 @@ class Search_model extends CI_Model {
     }
 
     //search in table REPLY
-    private function searchReply($keyword) {
+    private function searchReply($keyword)
+    {
         $this->db->select('reply.id as reply_id, reply.date, reply.topic_id, topic.title as topic_title, reply.user_id, reply.guest_id, user.username, reply.message');
         $array = array(
             'reply.date' => $keyword,

@@ -8,7 +8,7 @@ if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 ?>
 
-<h2>Edit profile</h2>
+    <h2>Edit profile</h2>
 <?php
 if (!is_null($error)) {
     echo "<span class='error'>$error</span><br/>";
@@ -17,6 +17,7 @@ $this->load->helper('form');
 $this->load->helper('date');
 $days = array(1 => 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31);
 $months = array(1 => 'Januari', 'Februari', 'Maart', 'April', 'Mei', 'Juni', 'Juli', 'Augustus', 'September', 'Oktober', 'November', 'December');
+$years = null;
 for ($i = date('Y') - 16; $i >= date('Y') - 70; $i--) {
     $years[$i] = $i;
 }

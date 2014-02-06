@@ -11,9 +11,7 @@ if (!defined('BASEPATH'))
 echo $pagination;
 echo '<br/>';
 
-foreach ($result as $row){
-echo $row->title;
-echo '<br/>';
+foreach ($result as $row) {
+    echo $row->title;
+    echo '<br/>';
 }
-
-?>

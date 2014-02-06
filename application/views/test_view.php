@@ -8,9 +8,7 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-foreach ($result as $row){
-echo '<a href="' . base_url() . 'test/listTopics/' . $row->id . '">' . $row->title . '</a>';
-echo '<br/>';
+foreach ($result as $row) {
+    echo '<a href="' . base_url() . 'test/listTopics/' . $row->id . '">' . $row->title . '</a>';
+    echo '<br/>';
 }
-
-?>

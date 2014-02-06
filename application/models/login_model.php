@@ -8,9 +8,11 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Login_model extends CI_Model {
+class Login_model extends CI_Model
+{
 
-    public function validate($username, $password) {
+    public function validate($username, $password)
+    {
         $this->db->select('*');
         $this->db->from('user');
         $this->db->where('username', $username);
@@ -40,7 +42,8 @@ class Login_model extends CI_Model {
     //function to get ALL userdata 
     //only do this when the user itself is logged in 
     //(private email and password are send back too)
-    public function getUserdata($user_id) {
+    public function getUserdata($user_id)
+    {
         $this->db->where('id', $user_id);
         $query = $this->db->get('user');
         // Let's check if there are any results
@@ -53,5 +56,3 @@ class Login_model extends CI_Model {
     }
 
 }
-
-?>

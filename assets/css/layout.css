@@ -7,10 +7,9 @@ html, body {
     margin: 0;
     padding: 0;
     height: 100%;
-    font-family: Calibri;
+    font-family: Calibri, sans-serif;
     /* Background, color in case image does not load */
-    background-color: #1e1e1e;
-    background-image: url("../images/wood_medium.jpg");
+    background: #1e1e1e url("../images/wood_medium.jpg");
 }
 
 /* Container div contains entire page: Header / Page / Footer */
@@ -30,7 +29,7 @@ html, body {
     /* Style round borders */
     border-radius: 10px;
     /* right | left shadow border */
-    box-shadow: 25px 0px 25px -25px #000000, -25px 0px 25px -25px #000000;
+    box-shadow: 25px 0 25px -25px #000000, -25px 0 25px -25px #000000;
 }
 
 .clear {
@@ -95,7 +94,7 @@ nav a:link, nav a:visited, #search, #searchSubmit {
 }
 
 #search, #searchSubmit {
-    font-family: Calibri;
+    font-family: Calibri, sans-serif;
     font-size: medium;
     border: none;
     /* searchSubmit will override */
@@ -166,15 +165,15 @@ nav a:hover, nav a:active, nav a:focus, #search {
 #fade {
     display: none;
     position: fixed;
-    top: 0%;
-    left: 0%;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     background-color: #000;
     z-index: 1001;
-    -moz-opacity: 0.7;
+    /*-moz-opacity: 0.7;*/
     opacity: .70;
-    filter: alpha(opacity=70);
+    /*filter: alpha(opacity=70);*/
 }
 
 #light {

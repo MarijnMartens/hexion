@@ -12,10 +12,12 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Forum extends CI_Controller {
+class Forum extends CI_Controller
+{
 
     //Constructor to load models, this way you do not have to do it for each function
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct();
         $this->load->model('forum_model');
         $this->load->model('topic_model');
@@ -26,11 +28,13 @@ class Forum extends CI_Controller {
     }
 
     //Main Forum - Lists different sections: Guests (i.e. FAQ, Guestbook) / Users / Hexioners / Admins
-    public function index() {
+    public function index()
+    {
         //Get all sections from database where level is equal or higher
         //Only forums are shown when userlevel >= forumlevel
         $level = $this->session->userdata('level');
         $result = $this->forum_model->getForums($level);
+        $data = null;
         //Check if all data is available otherwise display unknown
         foreach ($result as $row) {
             //different background-color tr in table
@@ -61,14 +65,14 @@ class Forum extends CI_Controller {
             $result = (
                 '<tr ' . $alt . ' >' .
                 '<td><a href="' . base_url() . 'forum/topics/' . $forum_id . '">' . $row->title . '</a><br/>' .
-                    $row->description . '</td>' .
-                    '<td><b>' . $this->countTopics($forum_id) . '</b> topics<br/><b>' .
-                    $this->countRepliesForum($forum_id) . '</b> antwoorden</td>' .
-                    '<td>' . $topicTitle . '<br/>' .
-                    'Door: <b>' . $replyUsername . '</b><br/>' .
-                    $lastReplyDate . '</td>' .
-                    '</tr>'
-                    );
+                $row->description . '</td>' .
+                '<td><b>' . $this->countTopics($forum_id) . '</b> topics<br/><b>' .
+                $this->countRepliesForum($forum_id) . '</b> antwoorden</td>' .
+                '<td>' . $topicTitle . '<br/>' .
+                'Door: <b>' . $replyUsername . '</b><br/>' .
+                $lastReplyDate . '</td>' .
+                '</tr>'
+            );
             //Put each row in array
             $data[] = $result;
         }
@@ -81,7 +85,8 @@ class Forum extends CI_Controller {
     }
 
     //Display list of topics
-    public function topics($forum_id = NULL) {
+    public function topics($forum_id = NULL)
+    {
         //security measure to find url tampering when no argument is entered
         $libraryData = array('argument' => $forum_id);
         $this->myaccess->missingArguments($libraryData);
@@ -91,6 +96,7 @@ class Forum extends CI_Controller {
         $count = $this->countTopics($forum_id);
         //Get list of topics in given forum
         $result = $this->topic_model->getTopics($forum_id);
+        $data = null;
         //If there are topics in forum
         if ($result != NULL) {
             //Display data for each topic
@@ -122,13 +128,13 @@ class Forum extends CI_Controller {
                 $result[0] = (
                     '<tr ' . $alt . ' >' .
                     '<td><a href="' . base_url() . 'forum/replies/' . $topic_id . '">' . $row->title . '</a><br/>' .
-                        'Aangemaakt: <b>' . $row->username . '</b><br/>' .
-                        $startTopicDate . '</td>' .
-                        '<td><b>' . $this->getViews($topic_id) . '<b/> bezocht<br/>' .
-                        '<b>' . $this->countReplies($topic_id) . '<b/> antwoorden</td>' .
-                        '<td>Door: <b>' . $replyUsername . '</b><br/>' .
-                        $lastReplyDate . '</td>'
-                        );
+                    'Aangemaakt: <b>' . $row->username . '</b><br/>' .
+                    $startTopicDate . '</td>' .
+                    '<td><b>' . $this->getViews($topic_id) . '<b/> bezocht<br/>' .
+                    '<b>' . $this->countReplies($topic_id) . '<b/> antwoorden</td>' .
+                    '<td>Door: <b>' . $replyUsername . '</b><br/>' .
+                    $lastReplyDate . '</td>'
+                );
                 //check if user is able to delete topic
                 $libraryData = array('forum_id' => $forum_id);
                 if ($this->myaccess->deleteTopic($libraryData)) {
@@ -137,8 +143,8 @@ class Forum extends CI_Controller {
                     $result[1] = '';
                 }
                 $result[2] = (
-                        '</tr>'
-                        );
+                '</tr>'
+                );
                 //combine 3 results
                 $data[] = implode('', $result);
             }
@@ -157,7 +163,8 @@ class Forum extends CI_Controller {
     }
 
     //insert new topic
-    public function insertTopic($error = NULL) {
+    public function insertTopic($error = NULL)
+    {
         //get forum_id from method topics
         $forum_id = $this->session->flashdata('forum_id');
         //check if user can create a topic
@@ -193,20 +200,21 @@ class Forum extends CI_Controller {
     }
 
     //process insert new topic
-    public function insertTopicProcess() {
+    public function insertTopicProcess()
+    {
         //Validate form
         $this->load->library('form_validation');
         $this->form_validation->set_error_delimiters('<span class="error">', '</span>');
         //Valide fields
         $this->form_validation->set_rules(
-                'title', 'Titel', 'required|'
-                . 'min_length[5]|'
-                . 'max_length[100]|'
+            'title', 'Titel', 'required|'
+            . 'min_length[5]|'
+            . 'max_length[100]|'
         );
         $this->form_validation->set_rules(
-                'reply', 'Openingspost', 'required|'
-                . 'min_length[2]|'
-                . 'max_length[2000]|'
+            'reply', 'Openingspost', 'required|'
+            . 'min_length[2]|'
+            . 'max_length[2000]|'
         );
         //Validation form, empty or not correct
         if ($this->form_validation->run() == FALSE) {
@@ -217,7 +225,7 @@ class Forum extends CI_Controller {
             //get user_id
             $user_id = $this->session->userdata('user_id');
             $result_topic = $this->topic_model->insert(
-                    $forum_id, $user_id, ucfirst($this->input->post('title'))
+                $forum_id, $user_id, ucfirst($this->input->post('title'))
             );
             if (!$result_topic) { //Model did not insert data in database
                 $error = 'Topic aanmaken is mislukt, probeer nogmaals';
@@ -226,7 +234,7 @@ class Forum extends CI_Controller {
             } else {
                 //insert first post in newly created topic
                 $result_reply = $this->reply_model->insert(
-                        $result_topic, $this->input->post('reply'), $user_id
+                    $result_topic, $this->input->post('reply'), $user_id
                 );
                 if (!$result_reply) { //Model did not insert data in database
                     $error = 'Openingspost aanmaken is mislukt, probeer topic te openen en een nieuwe reply aan te maken';
@@ -240,7 +248,8 @@ class Forum extends CI_Controller {
     }
 
     //display list of replies in one topic
-    public function replies($topic_id = NULL) {
+    public function replies($topic_id = NULL)
+    {
         //security measure to find url tampering when no argument is entered
         $libraryData = array('argument' => $topic_id);
         $this->myaccess->missingArguments($libraryData);
@@ -263,7 +272,8 @@ class Forum extends CI_Controller {
     }
 
     //insert new reply
-    public function insertReply($error = NULL) {
+    public function insertReply($error = NULL)
+    {
         //call captcha-library
         $this->load->library('MyCaptcha');
         //Call form validation-library
@@ -294,7 +304,8 @@ class Forum extends CI_Controller {
     }
 
     //process insert new reply
-    public function insertReplyProcess() {
+    public function insertReplyProcess()
+    {
         //call captcha-library
         $this->load->library('MyCaptcha');
         //Validate form
@@ -302,9 +313,9 @@ class Forum extends CI_Controller {
         $this->form_validation->set_error_delimiters('<span class="error">', '</span>');
         //Validate fields
         $this->form_validation->set_rules(
-                'reply', 'Antwoord', 'required|'
-                . 'min_length[2]|'
-                . 'max_length[2000]|'
+            'reply', 'Antwoord', 'required|'
+            . 'min_length[2]|'
+            . 'max_length[2000]|'
         );
         //Validation form
         if ($this->form_validation->run() == FALSE) {
@@ -331,7 +342,7 @@ class Forum extends CI_Controller {
                     }
                 }
                 $result = $this->reply_model->insert(
-                        $topic_id, ucfirst($this->input->post('reply')), $user_id, $guest_id
+                    $topic_id, ucfirst($this->input->post('reply')), $user_id, $guest_id
                 );
                 if (!$result) { //Model did not insert data in database
                     $this->session->keep_flashdata('topic_id');
@@ -345,7 +356,8 @@ class Forum extends CI_Controller {
     }
 
     //edit existing reply
-    public function editReply($reply_id = NULL, $error = NULL) {
+    public function editReply($reply_id = NULL, $error = NULL)
+    {
         //security measure to find url tampering when no argument is entered
         $libraryData = array('argument' => $reply_id);
         $this->myaccess->missingArguments($libraryData);
@@ -400,14 +412,15 @@ class Forum extends CI_Controller {
     }
 
     //push edited reply to database
-    public function editReplyProcess() {
+    public function editReplyProcess()
+    {
         $this->load->library('form_validation');
         $this->form_validation->set_error_delimiters('<span class="error">', '</span>');
         //Fields we validate
         $this->form_validation->set_rules(
-                'reply', 'Antwoord', 'required|'
-                . 'min_length[1]|'
-                . 'max_length[2100]|'
+            'reply', 'Antwoord', 'required|'
+            . 'min_length[1]|'
+            . 'max_length[2100]|'
         );
         //Validation form
         //Initial page, validation failed
@@ -430,7 +443,7 @@ class Forum extends CI_Controller {
             $reply_message = $this->input->post('reply');
             $message = $reply_message . '<h6>Aangepast door: ' . $username . ', op: ' . $date = date('d/m/Y H:i:s', time()) . '</h6>';
             $result = $this->reply_model->edit(
-                    $reply_id, ucfirst($message), $mod_break, $this->session->flashdata('message_old')
+                $reply_id, ucfirst($message), $mod_break, $this->session->flashdata('message_old')
             );
             if (!$result) { //Model did not insert data in database
                 $error = 'Antwoord wijzigen is mislukt, probeer nogmaals';
@@ -443,7 +456,8 @@ class Forum extends CI_Controller {
     }
 
     //Send confirmation to delete topic
-    public function deleteTopic($topic_id) {
+    public function deleteTopic($topic_id)
+    {
         $bodyData['title'] = 'Delete topic';
         $bodyData['topic_title'] = $this->topic_model->getData($topic_id)->title;
         $this->session->set_flashdata('topic_id', $topic_id);
@@ -453,7 +467,8 @@ class Forum extends CI_Controller {
     }
 
     //Process deletion of topic
-    public function deleteTopicProcess() {
+    public function deleteTopicProcess()
+    {
         $topic_id = $this->session->flashdata('topic_id');
         $result = $this->topic_model->delete($topic_id);
         if (!$result) {
@@ -464,7 +479,8 @@ class Forum extends CI_Controller {
         }
     }
 
-    public function closeTopic($topic_id) {
+    public function closeTopic($topic_id)
+    {
         $result = $this->topic_model->close($topic_id);
         if (!$result) {
             $this->session->set_flashdata('message', 'Topic sluiten mislukt');
@@ -475,9 +491,11 @@ class Forum extends CI_Controller {
     }
 
     //get last reply in forum
-    private function lastReplyForum($forum_id) {
+    private function lastReplyForum($forum_id)
+    {
         //get all topic_id's as an array
         $result = $this->topic_model->getAll($forum_id);
+        $data = null;
         if ($result) { //there are topics
             //variable to hold latest date
             $dateMax = '';
@@ -500,19 +518,22 @@ class Forum extends CI_Controller {
     }
 
     //count all replies in one topic
-    private function countReplies($topic_id) {
+    private function countReplies($topic_id)
+    {
         $result = $this->reply_model->getCount($topic_id) - 1;
         return $result;
     }
 
     //get views in one topic
-    private function getViews($topic_id) {
+    private function getViews($topic_id)
+    {
         $result = $this->topic_model->getViews($topic_id);
         return $result;
     }
 
     //Function for index to count all replies from all sub-topics
-    private function countRepliesForum($forum_id) {
+    private function countRepliesForum($forum_id)
+    {
         $result = $this->topic_model->getAll($forum_id);
         $count = 0;
         if (!$result) {
@@ -525,13 +546,15 @@ class Forum extends CI_Controller {
     }
 
     //count all topics
-    private function countTopics($forum_id) {
+    private function countTopics($forum_id)
+    {
         $count = $this->topic_model->getCount($forum_id);
         return $count;
     }
 
     //security measure to disable modifying URL
-    private function checkLevel($forum_id) {
+    private function checkLevel($forum_id)
+    {
         $user_level = $this->session->userdata('level');
         $forum_level = $this->forum_model->getLevel($forum_id);
         if ($user_level < $forum_level) {

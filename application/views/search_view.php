@@ -130,4 +130,3 @@ for ($i = 0; $i < count($result); $i++) {
         echo '</table>';
     }
 }
-?>

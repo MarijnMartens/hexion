@@ -10,10 +10,12 @@ if (!defined('BASEPATH'))
 
 include_once 'basecontroller.php';
 
-class Profile extends BaseController {
+class Profile extends BaseController
+{
 
     //view displays all information in a view-only format
-    public function index($user_id = null) {
+    public function index($user_id = null)
+    {
         if ($user_id == null) {
             //current user, get ALL userdata
             $this->load->model('login_model');
@@ -44,7 +46,8 @@ class Profile extends BaseController {
     }
 
     //edit user information
-    public function edit($error = NULL) {
+    public function edit($error = NULL)
+    {
         //Call form validation-library
         $this->load->library('form_validation');
         //get all data from index 
@@ -149,7 +152,9 @@ class Profile extends BaseController {
     }
 
     //save non-critical user information
-    public function save() {
+    public function save()
+    {
+        $file_name = null;
         //get all fields, xss filter
         $this->input->post(NULL, TRUE);
         //format errors
@@ -157,20 +162,20 @@ class Profile extends BaseController {
         $this->form_validation->set_error_delimiters('<span class="error">', '</span>');
         //Input field validation
         $this->form_validation->set_rules(
-                'fName', 'Voornaam', 'min_length[2]|'
-                . 'max_length[20]'
+            'fName', 'Voornaam', 'min_length[2]|'
+            . 'max_length[20]'
         );
         $this->form_validation->set_rules(
-                'lName', 'Achternaam', 'min_length[2]|'
-                . 'max_length[20]'
+            'lName', 'Achternaam', 'min_length[2]|'
+            . 'max_length[20]'
         );
         $this->form_validation->set_rules(
-                'fName', 'Voornaam', 'min_length[2]|'
-                . 'max_length[20]'
+            'fName', 'Voornaam', 'min_length[2]|'
+            . 'max_length[20]'
         );
         $this->form_validation->set_rules(
-                'city', 'Locatie', 'min_length[2]|'
-                . 'max_length[50]'
+            'city', 'Locatie', 'min_length[2]|'
+            . 'max_length[50]'
         );
 
         //Validation form
@@ -224,7 +229,7 @@ class Profile extends BaseController {
             //process changes
             $this->load->model('register_model');
             $result = $this->register_model->editProfile(
-                    $this->session->userdata('user_id'), $fName, $lName, $dateOfBirth, $gender, $city, $file_name
+                $this->session->userdata('user_id'), $fName, $lName, $dateOfBirth, $gender, $city, $file_name
             );
 
             //check update database
@@ -241,7 +246,8 @@ class Profile extends BaseController {
     }
 
     //save Critical user information
-    public function saveSecure() {
+    public function saveSecure()
+    {
         $resultEmail = $resultPassword = false;
 
         //get all fields, xss filter
@@ -251,21 +257,21 @@ class Profile extends BaseController {
         $this->form_validation->set_error_delimiters('<span class="error">', '</span>');
         //Input field validation
         $this->form_validation->set_rules(
-                'password', 'Paswoord', 'min_length[3]|'
-                //. 'matches[passConf]'
+            'password', 'Paswoord', 'min_length[3]|'
+        //. 'matches[passConf]'
         );
         $this->form_validation->set_rules(
-                'passConf', 'Herhaling paswoord'
+            'passConf', 'Herhaling paswoord'
         );
         $this->form_validation->set_rules(
-                'email', 'Email adres', 'valid_email|'
-                //. 'matches[emailConf]'
+            'email', 'Email adres', 'valid_email|'
+        //. 'matches[emailConf]'
         );
         $this->form_validation->set_rules(
-                'emailConf', 'Email adres'
+            'emailConf', 'Email adres'
         );
         $this->form_validation->set_rules(
-                'passwordOld', 'Huidig paswoord', 'required'
+            'passwordOld', 'Huidig paswoord', 'required'
         );
 
         //Validation form
@@ -288,7 +294,7 @@ class Profile extends BaseController {
                 //Check if both email fields are filled
                 if ($email == $emailConf) {
                     $resultEmail = $this->register_model->editProfileSecure(
-                            $this->session->userdata('user_id'), $passwordOld, $email, $password = null);
+                        $this->session->userdata('user_id'), $passwordOld, $email, $password = null);
                 } else { //emails did not match
                     $error = 'Nieuwe Emailadressen komen niet overeen';
                     $this->session->keep_flashdata('userdata');
@@ -302,7 +308,7 @@ class Profile extends BaseController {
                 //Check if both password fields are filled
                 if ($password == $passwordConf) {
                     $resultPassword = $this->register_model->editProfileSecure(
-                            $this->session->userdata('user_id'), $passwordOld, $email = null, $password);
+                        $this->session->userdata('user_id'), $passwordOld, $email = null, $password);
                 } else { //Passwords did not match
                     $error = 'Nieuwe paswoorden komen niet overeen';
                     $this->session->keep_flashdata('userdata');
@@ -325,7 +331,8 @@ class Profile extends BaseController {
         }
     }
 
-    public function all() {
+    public function all()
+    {
         $this->load->model('search_model');
         $result = $this->search_model->getUsernames();
         //array alphabet
@@ -341,7 +348,7 @@ class Profile extends BaseController {
             //Iterate from A to Z
             for ($i = 'A'; $i != 'AA'; $i++) {
                 if (substr($username, 0, 1) == $i) {
-                    array_push($alphabet[$i], $row/* array($row->id, $username) */);
+                    array_push($alphabet[$i], $row /* array($row->id, $username) */);
                 }
             }
         }

@@ -16,10 +16,12 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Login extends CI_Controller {
+class Login extends CI_Controller
+{
 
     //inloggen
-    public function index($error = NULL) {
+    public function index($error = NULL)
+    {
         //Call form validation-library
         $this->load->library('form_validation');
         //prepare form fields, fill value where provided
@@ -45,7 +47,8 @@ class Login extends CI_Controller {
         $this->load->view('template/tmpPage_view', $bodyData);
     }
 
-    public function login_process() {
+    public function login_process()
+    {
         // grab user input
         // security handled in config.php
         $username = $this->input->post('username');
@@ -66,66 +69,68 @@ class Login extends CI_Controller {
         }
     }
 
-    public function logout() {
+    public function logout()
+    {
         $this->session->sess_destroy();
         $this->index('Tot ziens!');
     }
 
     //register
-    public function register($error = NULL) {
+    public function register($error = NULL)
+    {
         //Call for methods
         $this->load->library('form_validation');
         $this->form_validation->set_error_delimiters('<span class="error">', '</span>');
 
         //Input field validation
         $this->form_validation->set_rules(
-                'username', 'Gebruikersnaam', 'required|'
-                . 'min_length[3]|'
-                . 'max_length[20]|'
-                . 'callback_register_username_check|'
-                . 'is_unique[user.username]'
+            'username', 'Gebruikersnaam', 'required|'
+            . 'min_length[3]|'
+            . 'max_length[20]|'
+            . 'callback_register_username_check|'
+            . 'is_unique[user.username]'
         );
         $this->form_validation->set_rules(
-                'password', 'Paswoord', 'required|'
-                . 'min_length[3]|'
-                . 'matches[passwordConf]'
+            'password', 'Paswoord', 'required|'
+            . 'min_length[3]|'
+            . 'matches[passwordConf]'
         );
         $this->form_validation->set_rules(
-                'passwordConf', 'Herhaling paswoord', 'required|'
+            'passwordConf', 'Herhaling paswoord', 'required|'
         );
         $this->form_validation->set_rules(
-                'email', 'Email adres', 'required|'
-                . 'valid_email|'
-                . 'is_unique[user.email]'
+            'email', 'Email adres', 'required|'
+            . 'valid_email|'
+            . 'is_unique[user.email]'
         );
 
         //Validation form
         if ($this->form_validation->run() == FALSE) {
             $usernameField = array(
-              'name' => 'username',
+                'name' => 'username',
                 'id' => 'username',
                 'placeholder' => 'Gebruikersnaam',
                 'value' => set_value('username')
             );
             $passwordField = array(
-              'name' => 'password',
+                'name' => 'password',
                 'id' => 'password',
                 'placeholder' => 'Wachtwoord',
                 'value' => set_value('password')
             );
             $passwordConfField = array(
-              'name' => 'passwordConf',
+                'name' => 'passwordConf',
                 'id' => 'passwordConf',
                 'value' => set_value('passwordConf')
             );
             $emailField = array(
-              'name' => 'email',
+                'name' => 'email',
                 'id' => 'email',
                 'placeholder' => 'Email',
                 'value' => set_value('email')
             );
             $bodyData['userdata'] = array(
-              'username' => $usernameField,
+                'username' => $usernameField,
                 'password' => $passwordField,
                 'passwordConf' => $passwordConfField,
                 'email' => $emailField
@@ -138,10 +143,10 @@ class Login extends CI_Controller {
         } else { //Validation is OK, open model to insert new user
             $this->load->model('register_model');
             $result = $this->register_model->setUsers(
-                    ucfirst($this->input->post('username')), $this->input->post('password'), $this->input->post('email')
+                ucfirst($this->input->post('username')), $this->input->post('password'), $this->input->post('email')
             );
             if (!$result) { //Model did not insert data in database
-                $bodyData = ['error' => 'Invoer in database is mislukt'];
+                $error = 'Invoer in database is mislukt';
                 $this->register($error);
             } else {
                 $this->login_process();
@@ -152,7 +157,8 @@ class Login extends CI_Controller {
     //'Admin' is not allowed as username to not confuse other users
     //Just as an example, in real world scenario I would use a preg_match where I look for
     //matches between the username and an array full of forbidden words)
-    public function register_username_check($str) {
+    public function register_username_check($str)
+    {
         if (!strcasecmp($str, 'admin')) { //strcasecmp is case insensitive
             $this->form_validation->set_message('username_check', '%s is niet toegelaten als gebruikersnaam');
             return FALSE;
@@ -161,7 +167,8 @@ class Login extends CI_Controller {
         }
     }
 
-    public function password_forget($error = NULL) {
+    public function password_forget($error = NULL)
+    {
         //call captcha-library
         $this->load->library('MyCaptcha');
         $usernameField = array(
@@ -191,7 +198,8 @@ class Login extends CI_Controller {
     }
 
     //Forgot password
-    public function password_reset($error = NULL) {
+    public function password_reset()
+    {
         //call captcha-library
         $this->load->library('MyCaptcha');
         //Call for methods
@@ -199,11 +207,11 @@ class Login extends CI_Controller {
         $this->form_validation->set_error_delimiters('<span class="error">', '</span>');
         //Input field validation
         $this->form_validation->set_rules(
-                'username', 'Gebruikersnaam', 'min_length[3]|'
-                . 'max_length[20]'
+            'username', 'Gebruikersnaam', 'min_length[3]|'
+            . 'max_length[20]'
         );
         $this->form_validation->set_rules(
-                'email', 'Email adres', 'valid_email'
+            'email', 'Email adres', 'valid_email'
         );
 
         $username = $this->input->post('username');
