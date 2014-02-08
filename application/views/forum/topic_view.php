@@ -8,19 +8,15 @@ if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 ?>
 
-<h2>Topics</h2>
+<h2><?php echo $count; ?> Topics</h2>
 <div class="content">
-    <p><a href="<?php echo base_url('forum/insertTopic'); ?>">Nieuw topic</a></p>
-
-    <p>
-
+    <div class="right"><a href="<?php echo base_url('forum/insertTopic'); ?>" class="submit">Nieuw topic</a></div>
     <table>
-        <?php echo "$count Topics"; ?>
         <?php
         foreach ($topics as $topic) {
             echo $topic;
         }
         ?>
     </table>
-    </p>
+    <div class="right"><a href="<?php echo base_url('forum/insertTopic'); ?>" class="submit">Nieuw topic</a></div>
 </div>

@@ -77,14 +77,14 @@ class Welcome extends CI_Controller
             'id' => 'name',
             'placeholder' => 'Naam',
             'value' => set_value('name', $nameField),
-            'size' => '20'
+            'size' => '35'
         );
         $email = array(
             'name' => 'email',
             'id' => 'email',
             'placeholder' => 'Email',
             'value' => set_value('email', $emailField),
-            'size' => '40'
+            'size' => '35'
         );
         $subject = array(
             'name' => 'subject',

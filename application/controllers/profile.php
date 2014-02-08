@@ -57,12 +57,14 @@ class Profile extends BaseController
         $fName = array(
             'name' => 'fName',
             'id' => 'fName',
+            'size' => '35',
             'placeholder' => 'Voornaam',
             'value' => set_value('fName', $userdata->fName)
         );
         $lName = array(
             'name' => 'lName',
             'id' => 'lName',
+            'size' => '35',
             'placeholder' => 'Achternaam',
             'value' => set_value('lName', $userdata->lName)
         );
@@ -93,6 +95,7 @@ class Profile extends BaseController
         $city = array(
             'name' => 'city',
             'id' => 'city',
+            'size' => '35',
             'placeholder' => 'Plaats',
             'value' => set_value('city', $userdata->city),
         );
@@ -103,30 +106,35 @@ class Profile extends BaseController
         $email = array(
             'name' => 'email',
             'id' => 'email',
+            'size' => '35',
             'placeholder' => 'Email',
             'value' => set_value('email', $userdata->email)
         );
         $emailConf = array(
             'name' => 'emailConf',
             'id' => 'emailConf',
+            'size' => '35',
             'placeholder' => 'Herhaal Email',
             'value' => set_value('emailConf')
         );
         $password = array(
             'name' => 'password',
             'id' => 'password',
+            'size' => '35',
             'placeholder' => 'Nieuw wachtwoord',
             'value' => set_value('password')
         );
         $passwordConf = array(
             'name' => 'passwordConf',
             'id' => 'passwordConf',
+            'size' => '35',
             'placeholder' => 'Herhaal nieuw wachtwoord',
             'value' => set_value('passwordConf')
         );
         $passwordOld = array(
             'name' => 'passwordOld',
             'id' => 'passwordOld',
+            'size' => '35',
             'placeholder' => 'Oud wachtwoord',
             'value' => set_value('passwordOld')
         );

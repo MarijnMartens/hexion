@@ -8,6 +8,9 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
+echo '<h2>Zoekresultaat voor ###########</h2>';
+echo '<div class="content"><p></p>';
+
 //iterate each database table in getAll
 for ($i = 0; $i < count($result); $i++) {
     $table = $result[$i];
@@ -130,3 +133,4 @@ for ($i = 0; $i < count($result); $i++) {
         echo '</table>';
     }
 }
+echo '</div>';

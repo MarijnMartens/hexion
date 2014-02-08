@@ -5,9 +5,17 @@
  * Created on: 10/01/2014
  */
 
-$this->load->helper('form');
+if (!defined('BASEPATH'))
+    exit('No direct script access allowed');
+
+echo '<h2>Verwijder Topic: ' . $topic_title
+    .
+    '</h2>';
+echo '<div class="content">';
 echo form_open('forum/deleteTopicProcess'); ?>
     <p>Ben je ABSOLUUT zeker dat je '<b><?php echo $topic_title; ?></b>' wil verwijderen en niet enkel op slot wil doen?
     </p>
-    <input type="submit" value="Ja, gooi het topic weg"/>
+    </div class="right">
+    <input type="submit" value="Ja, gooi het topic weg" class="submit"/></div>
 <?php echo form_close();
+echo '</div>';

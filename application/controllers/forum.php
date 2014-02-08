@@ -27,7 +27,7 @@ class Forum extends CI_Controller
         $this->load->library('MyAccess');
     }
 
-    //Main Forum - Lists different sections: Guests (i.e. FAQ, Guestbook) / Users / Hexioners / Admins
+    //Main Forum - Lists different sections: Guests (i.e. FAQ, Guestbook)/Users/Hexioners/Admins
     public function index()
     {
         //Get all sections from database where level is equal or higher
@@ -64,7 +64,7 @@ class Forum extends CI_Controller
             //rows to userscreen
             $result = (
                 '<tr ' . $alt . ' >' .
-                '<td><a href="' . base_url() . 'forum/topics/' . $forum_id . '">' . $row->title . '</a><br/>' .
+                '<td><div class="title"><a href="' . base_url() . 'forum/topics/' . $forum_id . '" class="pageLink">' . $row->title . '</a></div><br/>' .
                 $row->description . '</td>' .
                 '<td><b>' . $this->countTopics($forum_id) . '</b> topics<br/><b>' .
                 $this->countRepliesForum($forum_id) . '</b> antwoorden</td>' .
@@ -127,7 +127,7 @@ class Forum extends CI_Controller
                 $startTopicDate = date('d/m/Y H:i', strtotime($row->date));
                 $result[0] = (
                     '<tr ' . $alt . ' >' .
-                    '<td><a href="' . base_url() . 'forum/replies/' . $topic_id . '">' . $row->title . '</a><br/>' .
+                    '<td><div class="title"><a href="' . base_url() . 'forum/replies/' . $topic_id . '" class="pageLink">' . $row->title . '</a></div><br/>' .
                     'Aangemaakt: <b>' . $row->username . '</b><br/>' .
                     $startTopicDate . '</td>' .
                     '<td><b>' . $this->getViews($topic_id) . '<b/> bezocht<br/>' .
@@ -138,7 +138,7 @@ class Forum extends CI_Controller
                 //check if user is able to delete topic
                 $libraryData = array('forum_id' => $forum_id);
                 if ($this->myaccess->deleteTopic($libraryData)) {
-                    $result[1] = '<td><a href="' . base_url() . 'forum/deleteTopic/' . $topic_id . '">Verwijder</a></td>';
+                    $result[1] = '<td><a href="' . base_url() . 'forum/deleteTopic/' . $topic_id . '" class="pageLink">Verwijder</a></td>';
                 } else {
                     $result[1] = '';
                 }
@@ -177,12 +177,15 @@ class Forum extends CI_Controller
         $titleField = array(
             'name' => 'title',
             'id' => 'title',
-            'placeholder' => 'Topic-naam',
+            'size' => '75',
+            'placeholder' => 'Topic - naam',
             'value' => set_value('title')
         );
         $replyField = array(
             'name' => 'reply',
             'id' => 'reply',
+            'rows' => '10',
+            'cols' => '75',
             'placeholder' => 'Hier je openingspost',
             'value' => set_value('reply')
         );
@@ -204,17 +207,17 @@ class Forum extends CI_Controller
     {
         //Validate form
         $this->load->library('form_validation');
-        $this->form_validation->set_error_delimiters('<span class="error">', '</span>');
+        $this->form_validation->set_error_delimiters(' < span class="error" > ', '</span > ');
         //Valide fields
         $this->form_validation->set_rules(
-            'title', 'Titel', 'required|'
-            . 'min_length[5]|'
-            . 'max_length[100]|'
+            'title', 'Titel', 'required | '
+            . 'min_length[5] | '
+            . 'max_length[100] | '
         );
         $this->form_validation->set_rules(
-            'reply', 'Openingspost', 'required|'
-            . 'min_length[2]|'
-            . 'max_length[2000]|'
+            'reply', 'Openingspost', 'required | '
+            . 'min_length[2] | '
+            . 'max_length[2000] | '
         );
         //Validation form, empty or not correct
         if ($this->form_validation->run() == FALSE) {
@@ -287,6 +290,8 @@ class Forum extends CI_Controller
         $replyField = array(
             'name' => 'reply',
             'id' => 'reply',
+            'rows' => '10',
+            'cols' => '75',
             'placeholder' => 'Hier je antwoord',
             'value' => set_value('reply')
         );
@@ -310,12 +315,12 @@ class Forum extends CI_Controller
         $this->load->library('MyCaptcha');
         //Validate form
         $this->load->library('form_validation');
-        $this->form_validation->set_error_delimiters('<span class="error">', '</span>');
+        $this->form_validation->set_error_delimiters(' < span class="error" > ', '</span > ');
         //Validate fields
         $this->form_validation->set_rules(
-            'reply', 'Antwoord', 'required|'
-            . 'min_length[2]|'
-            . 'max_length[2000]|'
+            'reply', 'Antwoord', 'required | '
+            . 'min_length[2] | '
+            . 'max_length[2000] | '
         );
         //Validation form
         if ($this->form_validation->run() == FALSE) {
@@ -384,7 +389,7 @@ class Forum extends CI_Controller
         //subtract the modified message ('edited on + data + username') from text before showing
         $reply_message = $result->message;
         //remove string at pos to end if found
-        $message_newPosChange = strpos($reply_message, '<h6>Aangepast door: ');
+        $message_newPosChange = strpos($reply_message, ' < h6>Aangepast door: ');
         if ($message_newPosChange > 0) {
             $reply_message = substr_replace($reply_message, '', $message_newPosChange);
         }
@@ -394,6 +399,8 @@ class Forum extends CI_Controller
         $replyField = array(
             'name' => 'reply',
             'id' => 'reply',
+            'rows' => '10',
+            'cols' => '75',
             'placeholder' => 'Hier je antwoord',
             'value' => set_value('reply', $reply_message)
         );
@@ -415,12 +422,12 @@ class Forum extends CI_Controller
     public function editReplyProcess()
     {
         $this->load->library('form_validation');
-        $this->form_validation->set_error_delimiters('<span class="error">', '</span>');
+        $this->form_validation->set_error_delimiters(' < span class="error" > ', '</span > ');
         //Fields we validate
         $this->form_validation->set_rules(
-            'reply', 'Antwoord', 'required|'
-            . 'min_length[1]|'
-            . 'max_length[2100]|'
+            'reply', 'Antwoord', 'required | '
+            . 'min_length[1] | '
+            . 'max_length[2100] | '
         );
         //Validation form
         //Initial page, validation failed
@@ -441,7 +448,7 @@ class Forum extends CI_Controller
                 $username = 'Gast' . $this->input->cookie('guest_id');
             }
             $reply_message = $this->input->post('reply');
-            $message = $reply_message . '<h6>Aangepast door: ' . $username . ', op: ' . $date = date('d/m/Y H:i:s', time()) . '</h6>';
+            $message = $reply_message . ' < h6>Aangepast door: ' . $username . ', op: ' . $date = date('d/m/Y H:i:s', time()) . ' </h6 > ';
             $result = $this->reply_model->edit(
                 $reply_id, ucfirst($message), $mod_break, $this->session->flashdata('message_old')
             );
@@ -518,21 +525,24 @@ class Forum extends CI_Controller
     }
 
     //count all replies in one topic
-    private function countReplies($topic_id)
+    private
+    function countReplies($topic_id)
     {
         $result = $this->reply_model->getCount($topic_id) - 1;
         return $result;
     }
 
     //get views in one topic
-    private function getViews($topic_id)
+    private
+    function getViews($topic_id)
     {
         $result = $this->topic_model->getViews($topic_id);
         return $result;
     }
 
     //Function for index to count all replies from all sub-topics
-    private function countRepliesForum($forum_id)
+    private
+    function countRepliesForum($forum_id)
     {
         $result = $this->topic_model->getAll($forum_id);
         $count = 0;
@@ -546,14 +556,16 @@ class Forum extends CI_Controller
     }
 
     //count all topics
-    private function countTopics($forum_id)
+    private
+    function countTopics($forum_id)
     {
         $count = $this->topic_model->getCount($forum_id);
         return $count;
     }
 
     //security measure to disable modifying URL
-    private function checkLevel($forum_id)
+    private
+    function checkLevel($forum_id)
     {
         $user_level = $this->session->userdata('level');
         $forum_level = $this->forum_model->getLevel($forum_id);

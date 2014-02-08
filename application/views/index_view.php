@@ -14,16 +14,16 @@ for ($i = 0; $i < count($result); $i++) {
         //echo '<h2 class="toggle">' . $row->title . '</h2>';
         echo '<h2>' . $result[$i]->title . '</h2>';
         echo '<div class="content">';
-        echo '<p>' . $result[$i]->username . ' ' . $result[$i]->date . '</p>';
-        echo '<p>' . nl2br($result[$i]->message) . '</p>';
+        echo '<div class="right">' . $result[$i]->username . ' ' . $result[$i]->date . '</div>';
+        echo nl2br($result[$i]->message);
         echo '</div>';
     } else {
         //echo '<div class="island" id="' . $result[$i]->id . '">';
         //echo '<h2 class="toggle">' . $row->title . '</h2>';
         echo '<h2>' . $result[$i]->title . '</h2>';
         echo '<div class="content">';
-        echo '<p>' . $result[$i]->username . ' ' . $result[$i]->date . '</p>';
-        echo '<p>' . nl2br($result[$i]->message) . '</p>';
+        echo '<div class="right">' . $result[$i]->username . ' ' . $result[$i]->date . '</div>';
+        echo nl2br($result[$i]->message);
         echo '</div>';
         echo '</article>';
         echo '<article>';

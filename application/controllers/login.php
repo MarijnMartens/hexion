@@ -78,6 +78,8 @@ class Login extends CI_Controller
     //register
     public function register($error = NULL)
     {
+        //call captcha-library
+        $this->load->library('MyCaptcha');
         //Call for methods
         $this->load->library('form_validation');
         $this->form_validation->set_error_delimiters('<span class="error">', '</span>');
@@ -109,24 +111,28 @@ class Login extends CI_Controller
             $usernameField = array(
                 'name' => 'username',
                 'id' => 'username',
+                'size' => '35',
                 'placeholder' => 'Gebruikersnaam',
                 'value' => set_value('username')
             );
             $passwordField = array(
                 'name' => 'password',
                 'id' => 'password',
+                'size' => '35',
                 'placeholder' => 'Wachtwoord',
                 'value' => set_value('password')
             );
             $passwordConfField = array(
                 'name' => 'passwordConf',
                 'id' => 'passwordConf',
+                'size' => '35',
                 'placeholder' => 'Herhaal wachtwoord',
                 'value' => set_value('passwordConf')
             );
             $emailField = array(
                 'name' => 'email',
                 'id' => 'email',
+                'size' => '35',
                 'placeholder' => 'Email',
                 'value' => set_value('email')
             );
@@ -136,7 +142,9 @@ class Login extends CI_Controller
                 'passwordConf' => $passwordConfField,
                 'email' => $emailField
             );
+            $captcha = $this->mycaptcha->showCaptcha();
             $bodyData['title'] = 'Register';
+            $bodyData['captcha'] = $captcha;
             $bodyData['error'] = $error;
             $bodyData['aside_visible'] = 'false';
             $bodyData['view'] = 'login/register_view';
@@ -175,12 +183,14 @@ class Login extends CI_Controller
         $usernameField = array(
             'name' => 'username',
             'id' => 'username',
+            'size' => '35',
             'placeholder' => 'Gebruikersnaam',
             'value' => set_value('username')
         );
         $emailField = array(
             'name' => 'email',
             'id' => 'email',
+            'size' => '35',
             'placeholder' => 'Email',
             'value' => set_value('email')
         );

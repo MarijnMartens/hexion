@@ -8,7 +8,7 @@
 img.avatar {
     max-height: 250px;
     width: 150px;
-    border-radius: 7px;
+    border: solid 1px black;
 }
 
 /*display of thumbmail*/
@@ -24,8 +24,8 @@ img.avatarThumbmail {
 }
 
 /* Make textfiels and passwordfiels same length in Internet Explorer */
-input {
-    font-family: sans-serif;
+input, textarea {
+    font-family: Calibri, sans-serif;
 }
 
 h2 {
@@ -43,7 +43,8 @@ h2 {
     cursor: pointer;
 }
 
-article p:first-child {
+article .right {
+    margin: 5px;
     text-align: right;
 }
 
@@ -64,6 +65,10 @@ td.forum {
     min-height: 7em;
 }
 
+.rowBlock {
+
+}
+
 /* table for forms */
 .form {
     margin-left: auto;
@@ -80,7 +85,8 @@ td.forum {
 }
 
 .submit, .blackLink:link, .blackLink:visited {
-    margin: 0.5em 0.5em 0 0;
+    cursor: pointer;
+    margin: 0.5em 0 0.5em 0.5em;
     display: inline-block;
     font-weight: bold;
     color: #FFFFFF;
@@ -107,4 +113,23 @@ td.forum {
 
 .blackLink:hover, .blackLink:active, .blackLink:focus {
     background-color: #747474;
+}
+
+.divBox {
+    display: inline-block;
+    vertical-align: top;
+    margin: 10px;
+    padding: 10px;
+}
+
+.title {
+    font-size: 1.5em;
+}
+
+.pageLink:link, .pageLink:visited {
+    color: #25903b;
+}
+
+.pageLink:hover, .pageLink:active, .pageLink:focus {
+    color: #2EC446;
 }

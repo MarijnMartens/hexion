@@ -8,20 +8,33 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 ?>
+
 <h2>Vul in wat je nog weet</h2>
-<?php
-if (!is_null($error)) echo "<span class='error'>$error</span><br/>";
-echo validation_errors();
-echo form_open('login/password_reset');
-echo form_label('Gebruikersnaam', 'username');
-echo form_input($userdata['username']);
-echo form_error('username');
-echo '<br/>';
-echo form_label('Email', 'email');
-echo form_input($userdata['email']);
-echo form_error('email');
-echo '<br/>';
-echo $captcha;
-echo form_submit('submit', 'Stuur een nieuw wachtwoord!', "class='submit'");
-echo form_close();
-?>
+<div class="content">
+    <?php
+    echo '<table class="form"><tr><td>';
+    if (!is_null($error)) echo "<span class='error'>$error</span><br/>";
+    echo validation_errors();
+    echo form_open('login/password_reset');
+    echo '</td></tr><tr><td>';
+    echo form_label('Gebruikersnaam', 'username');
+    echo '</td><td>';
+    echo form_input($userdata['username']);
+    echo '</td><td>';
+    echo form_error('username');
+    echo '</td></tr><tr><td>';
+    echo form_label('Email', 'email');
+    echo '</td><td>';
+    echo form_input($userdata['email']);
+    echo '</td><td>';
+    echo form_error('email');
+    echo '</td></tr><tr><td>';
+    echo $captcha;
+    //echo '</td></tr><tr><td colspan="3">';
+    echo '</td></tr></table>';
+    echo '<div class="right">';
+    echo form_submit('submit', 'Stuur een nieuw wachtwoord!', "class='submit'");
+    echo '</div>';
+    echo form_close();
+    ?>
+</div>
