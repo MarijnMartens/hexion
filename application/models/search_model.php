@@ -96,7 +96,7 @@ class Search_model extends CI_Model
     //search in table TOPIC
     private function searchTopic($level, $keyword)
     {
-        $this->db->select('id as topic_id, forum_id, user_id, topic.title as topic_title, topic.date');
+        $this->db->select('topic.id as topic_id, forum_id, user_id, topic.title as topic_title, topic.date');
         $array = array(
             'topic.title' => $keyword,
             'topic.date' => $keyword
