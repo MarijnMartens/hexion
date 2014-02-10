@@ -6,8 +6,6 @@ References: none
 <h2>Hexion ?</h2>
 
 <div class="content">
-    <p></p>
-
     <p>
         Hexion is een opkomende studentenvereniging van departement PXL-IT.<br/>
         Wij zijn een vereniging voor en door studenten. Bij ons kan je tevens ook terecht
@@ -22,10 +20,8 @@ References: none
     <h2>Eeuwig Hexion: Het lied van Koppelstock</h2>
 
     <div class="content">
-        <p>A.J. Schooleman</p>
-
+        <div class="right">A.J. Schooleman</div>
         <div style="text-align: center">
-            <p></p>
 
             <p>
                 Een informaticus is lui dat weet iedereen<br/>

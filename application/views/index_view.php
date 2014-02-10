@@ -14,7 +14,7 @@ for ($i = 0; $i < count($result); $i++) {
         //echo '<h2 class="toggle">' . $row->title . '</h2>';
         echo '<h2>' . $result[$i]->title . '</h2>';
         echo '<div class="content">';
-        echo '<div class="right">' . $result[$i]->username . ' ' . $result[$i]->date . '</div>';
+        echo '<div class="right"><a class="pageLink" href="' . base_url() . 'profile/index/' . $result[$i]->id . '">' . $result[$i]->username . ' </a>' . $date = date('d/m/Y H:i', strtotime($result[$i]->date)) . '</div>';
         echo nl2br($result[$i]->message);
         echo '</div>';
     } else {
@@ -22,12 +22,10 @@ for ($i = 0; $i < count($result); $i++) {
         //echo '<h2 class="toggle">' . $row->title . '</h2>';
         echo '<h2>' . $result[$i]->title . '</h2>';
         echo '<div class="content">';
-        echo '<div class="right">' . $result[$i]->username . ' ' . $result[$i]->date . '</div>';
+        echo '<div class="right"><a class="pageLink" href="' . base_url() . 'profile/index/' . $result[$i]->id . '">' . $result[$i]->username . ' </a>' . $date = date('d/m/Y H:i', strtotime($result[$i]->date)) . '</div>';
         echo nl2br($result[$i]->message);
         echo '</div>';
         echo '</article>';
         echo '<article>';
     }
-
-
 }

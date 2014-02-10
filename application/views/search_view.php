@@ -8,7 +8,7 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-echo '<h2>Zoekresultaat voor ###########</h2>';
+echo '<h2>' . $title . '</h2>';
 echo '<div class="content"><p></p>';
 
 //iterate each database table in getAll
@@ -123,6 +123,10 @@ for ($i = 0; $i < count($result); $i++) {
                             $message .= '..';
                         }
                         echo '<td>' . $message . '</td>'; //Need to shorten this, only show i.e. 160 characters, maybe anchorlink this
+                        break;
+                    case 'date':
+                        $date = date('d/m/Y H:i', strtotime($row->$fields[$j]));
+                        echo '<td>' . $date . '</td>';
                         break;
                     default:
                         echo '<td>' . $row->$fields[$j] . '</td>';

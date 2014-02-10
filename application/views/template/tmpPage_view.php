@@ -85,8 +85,8 @@ if (!(isset($aside_visible))) {
                    height="500"
                    data-link-color="#1c8017"
                    data-chrome="nofooter noscrollbar"
-                   href="https://twitter.com/Marijn_Martens"
-                   data-widget-id="416921452827275264">Tweets by @Marijn_Martens</a>
+                   href="https://twitter.com/Hexion1"
+                   data-widget-id="432852062024368128">Tweets by @Hexion1</a>
                 <!-- End Twitter timeline -->
             </div>
             <!-- End Aside -->
