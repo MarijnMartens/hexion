@@ -133,3 +133,7 @@ td.forum {
 .pageLink:hover, .pageLink:active, .pageLink:focus {
     color: #2EC446;
 }
+
+.search th {
+    text-align: left;
+}

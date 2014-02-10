@@ -39,20 +39,25 @@ class Search_model extends CI_Model
     }
 
     //search whatever you want
-    public function getAll($keyword)
+    public function getAll($level, $keyword)
     {
         //search in tables
-        $result[0] = $this->searchUser($keyword);
+        $result[0] = $this->searchUser($level, $keyword);
         //$result[1] = $this->searchForum($keyword);
-        $result[1] = $this->searchTopic($keyword);
-        $result[2] = $this->searchReply($keyword);
+        $result[1] = $this->searchTopic($level, $keyword);
+        $result[2] = $this->searchReply($level, $keyword);
 
         return $result;
     }
 
     //search in table USER
-    private function searchUser($keyword)
+    private function searchUser($level, $keyword)
     {
+        //if guest -> do not display user
+        if ($level == 0) {
+            return false;
+        }
+
         $this->db->select('id as user_id, username, avatar');
         $array = array(
             'username' => $keyword,
@@ -89,15 +94,18 @@ class Search_model extends CI_Model
     }*/
 
     //search in table TOPIC
-    private function searchTopic($keyword)
+    private function searchTopic($level, $keyword)
     {
-        $this->db->select('id as topic_id, forum_id, user_id, title as topic_title, date');
+        $this->db->select('id as topic_id, forum_id, user_id, topic.title as topic_title, topic.date');
         $array = array(
-            'title' => $keyword,
-            'date' => $keyword
+            'topic.title' => $keyword,
+            'topic.date' => $keyword
         );
+        $this->db->from('topic');
+        $this->db->join('forum', 'topic.forum_id = forum.id');
         $this->db->or_like($array);
-        $query = $this->db->get('topic');
+        $this->db->where('forum.level <=', $level);
+        $query = $this->db->get();
         // Let's check if there are any results
         if ($query->num_rows() >= 1) {
             return $query; //->result();
@@ -107,7 +115,7 @@ class Search_model extends CI_Model
     }
 
     //search in table REPLY
-    private function searchReply($keyword)
+    private function searchReply($level, $keyword)
     {
         $this->db->select('reply.id as reply_id, reply.date, reply.topic_id, topic.title as topic_title, reply.user_id, reply.guest_id, user.username, reply.message');
         $array = array(
@@ -118,6 +126,7 @@ class Search_model extends CI_Model
         $this->db->from('reply');
         $this->db->join('user', 'reply.user_id = user.id', 'left');
         $this->db->join('topic', 'reply.topic_id = topic.id');
+        //  $this->db->where('level <=', $level);
         $this->db->or_like($array);
         $query = $this->db->get();
         // Let's check if there are any results

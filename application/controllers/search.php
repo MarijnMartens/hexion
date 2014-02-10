@@ -22,7 +22,9 @@ class Search extends CI_Controller
             redirect('welcome/message');
         }
 
-        $result = $this->search_model->getAll($keyword);
+        $level = $this->session->userdata('level');
+
+        $result = $this->search_model->getAll($level, $keyword);
         //Empty arrays count as null
         if (!(array_filter($result) == null)) {
             $bodyData['result'] = $result;

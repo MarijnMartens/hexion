@@ -138,7 +138,7 @@ class Forum extends CI_Controller
                 //check if user is able to delete topic
                 $libraryData = array('forum_id' => $forum_id);
                 if ($this->myaccess->deleteTopic($libraryData)) {
-                    $result[1] = '<td><a href="' . base_url() . 'forum/deleteTopic/' . $topic_id . '" class="pageLink">Verwijder</a></td>';
+                    $result[1] = '<td><a href="' . base_url() . 'forum/deleteTopic/' . $topic_id . '" class="blackLink">Verwijder</a></td>';
                 } else {
                     $result[1] = '';
                 }

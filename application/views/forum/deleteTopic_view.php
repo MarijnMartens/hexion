@@ -13,9 +13,9 @@ echo '<h2>Verwijder Topic: ' . $topic_title
     '</h2>';
 echo '<div class="content">';
 echo form_open('forum/deleteTopicProcess'); ?>
-    <p>Ben je ABSOLUUT zeker dat je '<b><?php echo $topic_title; ?></b>' wil verwijderen en niet enkel op slot wil doen?
+    <p>Ben je ABSOLUUT zeker dat je '<b><?php echo $topic_title; ?></b>' wil verwijderen, deze actie is onomkeerbaar.
     </p>
-    </div class="right">
-    <input type="submit" value="Ja, gooi het topic weg" class="submit"/></div>
+    <div class="right">
+        <input type="submit" value="Ja, gooi het topic weg" class="submit"/></div>
 <?php echo form_close();
 echo '</div>';
