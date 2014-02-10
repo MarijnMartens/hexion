@@ -21,7 +21,7 @@ class Search extends CI_Controller
             $this->session->set_flashdata('message', $message);
             redirect('welcome/message');
         }
-
+        $level = 0;
         $level = $this->session->userdata('level');
 
         $result = $this->search_model->getAll($level, $keyword);
