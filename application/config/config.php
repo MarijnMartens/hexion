@@ -17,7 +17,7 @@
 
 
 if ($_SERVER['HTTP_HOST'] != "localhost") {
-    $config['base_url'] = 'http://projectweb2.azurewebsites.net/';
+    $config['base_url'] = 'http://hexioners.be/';
 } else {
     $config['base_url'] = 'http://localhost/hexion/';
 }

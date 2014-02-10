@@ -70,6 +70,9 @@ class Search_model extends CI_Model
         $query = $this->db->get('user');
         // Let's check if there are any results
         if ($query->num_rows() >= 1) {
+            //result is handled in view
+            //now we do not only have access to result
+            //but also to metdata table
             return $query; //->result();
         } else {
             return false;
@@ -126,9 +129,9 @@ class Search_model extends CI_Model
         $this->db->from('reply');
         $this->db->join('user', 'reply.user_id = user.id', 'left');
         $this->db->join('topic', 'reply.topic_id = topic.id');
-        /*$this->db->join('forum', 'topic.forum_id = forum.id');*/
+        /* $this->db->join('forum', 'topic.forum_id = forum.id');*/
         $this->db->or_like($array);
-        /*  $this->db->where('forum.level <=', $level);*/
+        //$this->db->where('forum.level <=', $level);
         $query = $this->db->get();
         // Let's check if there are any results
         if ($query->num_rows() >= 1) {
