@@ -126,9 +126,9 @@ class Search_model extends CI_Model
         $this->db->from('reply');
         $this->db->join('user', 'reply.user_id = user.id', 'left');
         $this->db->join('topic', 'reply.topic_id = topic.id');
-        $this->db->join('forum', 'topic.forum_id = forum.id');
+        /*$this->db->join('forum', 'topic.forum_id = forum.id');*/
         $this->db->or_like($array);
-        $this->db->and('forum.level <=', $level);
+        /*  $this->db->where('forum.level <=', $level);*/
         $query = $this->db->get();
         // Let's check if there are any results
         if ($query->num_rows() >= 1) {
