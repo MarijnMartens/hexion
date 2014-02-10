@@ -1,0 +1,9 @@
+#search:-moz-placeholder {
+    /* Firefox 18- */
+    color: #FFFFFF;
+}
+
+#search::-moz-placeholder {
+    /* Firefox 19+ */
+    color: #FFFFFF;
+}

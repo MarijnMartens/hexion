@@ -85,7 +85,8 @@ nav a:link, nav a:visited, #search, #searchSubmit {
     /* 6 (items) * 120 (width)= 720 */
     width: 120px;
     font-weight: bold;
-    color: #FFFFFF;
+    color: #FFFFFF; /* No problemo in IE as usual */
+    /* Fuck up in Chrome / Firefox */
     background-color: #25903b;
     text-align: center;
     padding: 5px;

@@ -11,3 +11,7 @@ nav {
 #search {
     font-size: medium;
 }
+
+#search::-webkit-input-placeholder {
+    color: #FFFFFF;
+}

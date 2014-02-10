@@ -21,29 +21,33 @@ if (!defined('BASEPATH'))
             $edit = false;
             ?>
             <tr <?php echo $alt; ?>>
-                <td class="forum"><?php echo $reply->date; ?></td>
                 <td class="forum"><?php
                     $edit = false;
                     if ($reply->username != NULL) {
-                        echo '<a href="' . base_url("profile/view/$reply->user_id") . '" class="pageLink">' . $reply->username . '</a>';
-                        echo '<img class="avatarThumbmail" src="' . base_url() . 'assets/images/avatars/' . $reply->avatar . '" alt="Avatar" width="150"/>';
+                        echo '<img class="avatar" style="max-height: 75px; width: 50px;" src="' . base_url() . 'assets/images/avatars/' . $reply->avatar . '" alt="Avatar"/><br/>';
+                        echo '<a href="' . base_url("profile/view/$reply->user_id") . '" class="pageLink">' . $reply->username . '</a><br/>';
+
                         if ($reply->user_id == $this->session->userdata('user_id')) {
                             $edit = true;
                         } else if ($this->session->userdata('level') >= 3) {
                             $edit = true;
                         }
                     } else {
-                        echo 'Gast' . $reply->guest_id;
+                        echo 'Gast' . $reply->guest_id . '<br/>';
                         if ($reply->guest_id == $this->input->cookie('guest_id')) {
                             $edit = true;
                         }
                     }
-                    ?></td>
+                    echo $reply->date;
+                    ?>
+                </td>
                 <td class="forum"><?php echo nl2br($reply->message); ?></td>
-                <?php if ($edit == true && $reply->mod_break == false) { ?>
-                    <td><a href="<?php echo base_url("forum/editReply/$reply->id"); ?>" class="blackLink">Edit reply</a>
-                    </td>
-                <?php } ?>
+                <td>
+                    <?php if ($edit == true && $reply->mod_break == false) { ?>
+                        <a href="<?php echo base_url("forum/editReply/$reply->id"); ?>" class="blackLink">Edit reply</a>
+
+                    <?php } ?>
+                </td>
             </tr>
         <?php } ?>
     </table>
