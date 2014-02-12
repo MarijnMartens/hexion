@@ -211,6 +211,7 @@ class Profile extends BaseController
             //check if a new avatar is provided
             if (!empty($_FILES['userfile']['name'])) {
                 if (!$this->upload->do_upload()) {
+                    //This error is not translated
                     $error = $this->upload->display_errors();
                     // print_r($error);
                     //input forms in flashdata zetten
@@ -222,8 +223,9 @@ class Profile extends BaseController
                         'dateOfBirth' => $dateOfBirth
                     );
                     $this->session->set_flashdata('userdata', $userdata);
-
-                    $this->edit($error);
+                    $this->session->set_flashdata('message', $error);
+                    redirect('welcome/message');
+                    //$this->edit($error);
                 } else {
                     $upload_data = $this->upload->data();
                     $file_name = $upload_data['file_name'];
@@ -256,7 +258,8 @@ class Profile extends BaseController
     //save Critical user information
     public function saveSecure()
     {
-        $resultEmail = $resultPassword = false;
+        $resultEmail = false;
+        $resultPassword = false;
 
         //get all fields, xss filter
         $this->input->post(NULL, TRUE);
@@ -276,7 +279,7 @@ class Profile extends BaseController
         //. 'matches[emailConf]'
         );
         $this->form_validation->set_rules(
-            'emailConf', 'Email adres'
+            'emailConf', 'Email adres', 'valid_email'
         );
         $this->form_validation->set_rules(
             'passwordOld', 'Huidig paswoord', 'required'
@@ -295,20 +298,21 @@ class Profile extends BaseController
             //load model
             $this->load->model('register_model');
 
-            //to make the code a little bit easier to read
+            //To make the code a little bit easier to comprehend
             // I decided to do multiple transactions in case when both email and password has changed
             //Check if email has changed
+            //not needed since we check if the email field is the same as the emailConf field
             if ($email != $this->session->userdata('email')) {
                 //Check if both email fields are filled
                 if ($email == $emailConf) {
                     $resultEmail = $this->register_model->editProfileSecure(
                         $this->session->userdata('user_id'), $passwordOld, $email, $password = null);
-                } else { //emails did not match
-                    $error = 'Nieuwe Emailadressen komen niet overeen';
+                } else { //Emails did not match
+                    $error = 'Nieuwe email adressen komen niet overeen';
                     $this->session->keep_flashdata('userdata');
                     $this->edit($error);
-                    /* $this->session->set_flashdata('message', $error);
-                      redirect('welcome/message'); */
+                    // $this->session->set_flashdata('message', $error);
+                    //redirect('welcome/message');
                 }
             }
             //Check if password has changed
@@ -321,8 +325,8 @@ class Profile extends BaseController
                     $error = 'Nieuwe paswoorden komen niet overeen';
                     $this->session->keep_flashdata('userdata');
                     $this->edit($error);
-                    /* $this->session->set_flashdata('message', $error);
-                      redirect('welcome/message'); */
+                    // $this->session->set_flashdata('message', $error);
+                    // redirect('welcome/message');
                 }
             }
             //check update database
@@ -330,8 +334,7 @@ class Profile extends BaseController
                 $error = 'Invoer in database is mislukt';
                 $this->session->keep_flashdata('userdata');
                 $this->edit($error);
-                /* $this->session->set_flashdata('message', $error);
-                  redirect('welcome/message'); */
+
             } else {
                 //display profile after edit
                 redirect('profile');

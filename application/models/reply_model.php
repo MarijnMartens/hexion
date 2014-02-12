@@ -11,19 +11,29 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Reply_model extends CI_Model {
+class Reply_model extends CI_Model
+{
     //get all replies from one topic
-    public function getReplies($topic_id) {
+    public function getReplies($topic_id)
+    {
         $this->db->select('reply.*, user.id as user_id, user.username, user.avatar');
         $this->db->from('reply');
         $this->db->join('user', 'reply.user_id = user.id', 'left');
         $this->db->where('reply.topic_id', $topic_id);
         $this->db->order_by('reply.date');
         $query = $this->db->get();
-        return $query->result();
+
+        if ($query->num_rows() >= 1) {
+            return $query->result();
+        } else {
+            return false;
+        }
+
     }
+
     //get last reply per topic
-    public function getLast($topic_id) {
+    public function getLast($topic_id)
+    {
         $this->db->where('topic_id', $topic_id);
         $this->db->where("date = (select max(date) FROM reply WHERE topic_id = $topic_id)");
         $query = $this->db->get('reply');
@@ -33,25 +43,35 @@ class Reply_model extends CI_Model {
             return false;
         }
     }
+
     //count replies per topic
-    public function getCount($topic_id) {
+    public function getCount($topic_id)
+    {
         $this->db->select('count(*) as count');
         $this->db->from('reply');
         $this->db->where('topic_id', $topic_id);
         $query = $this->db->get();
-        return $query->row()->count;
+
+        if ($query->num_rows() == 1) {
+            return $query->row()->count;
+        } else {
+            return false;
+        }
     }
-    
+
     //reply anonymously, create ID
-    public function anonymous() {
+    public function anonymous()
+    {
         $guest_id = time() - strtotime('5 January 2014') . microtime() * 1000000;
-        $this->input->set_cookie('guest_id', $guest_id, 60*60*24*365);
+        $this->input->set_cookie('guest_id', $guest_id, 60 * 60 * 24 * 365);
         return $guest_id;
     }
+
     //insert reply
-    public function insert($topic_id, $msg, $user_id = 0, $guest_id = 0) {
+    public function insert($topic_id, $msg, $user_id = 0, $guest_id = 0)
+    {
         //check not both user_id and guest_id are empty
-        if($user_id == 0 && $guest_id == 0){
+        if ($user_id == 0 && $guest_id == 0) {
             //make a guest_id
             $this->anonymous();
         }
@@ -70,14 +90,23 @@ class Reply_model extends CI_Model {
             return FALSE;
         }
     }
+
     //get data from one reply
-    public function get($reply_id) {
+    public function get($reply_id)
+    {
         $this->db->where('id', $reply_id);
         $query = $this->db->get('reply');
-        return $query->row();
+
+        if ($query->num_rows() == 1) {
+            return $query->row();
+        } else {
+            return false;
+        }
     }
+
     //update data from one reply
-    public function edit($reply_id, $msg, $mod_break, $msg_old) {
+    public function edit($reply_id, $msg, $mod_break, $msg_old)
+    {
         $data = array(
             'message' => $msg,
             'mod_break' => $mod_break,

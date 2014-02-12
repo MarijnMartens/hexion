@@ -33,6 +33,8 @@ if (!defined('BASEPATH'))
     echo form_label('Herhaal Email', 'emailConf');
     echo '</td><td>';
     echo form_input($userdata['emailConf']);
+    echo '</td><td>';
+    echo form_error('emailConf');
     echo '</td></tr><tr><td>';
     echo form_label('Nieuw wachtwoord', 'password');
     echo '</td><td>';

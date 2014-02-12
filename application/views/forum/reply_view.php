@@ -25,7 +25,7 @@ if (!defined('BASEPATH'))
                     $edit = false;
                     if ($reply->username != NULL) {
                         echo '<img class="avatar" style="max-height: 75px; width: 50px;" src="' . base_url() . 'assets/images/avatars/' . $reply->avatar . '" alt="Avatar"/><br/>';
-                        echo '<a href="' . base_url("profile/view/$reply->user_id") . '" class="pageLink">' . $reply->username . '</a><br/>';
+                        echo '<a href="' . base_url("profile/index/$reply->user_id") . '" class="pageLink">' . $reply->username . '</a><br/>';
 
                         if ($reply->user_id == $this->session->userdata('user_id')) {
                             $edit = true;
