@@ -245,9 +245,9 @@ class Profile extends BaseController
             //check update database
             if (!$result) { //Model did not insert data in database
                 $error = 'Invoer in database is mislukt';
-                //$this->edit($error);
-                $this->session->set_flashdata('message', $error);
-                redirect('welcome/message');
+                $this->edit($error);
+                //$this->session->set_flashdata('message', $error);
+                //redirect('welcome/message');
             } else {
                 //display profile after edit
                 redirect('profile');
@@ -297,7 +297,7 @@ class Profile extends BaseController
             $passwordOld = $this->input->post('passwordOld');
             //load model
             $this->load->model('register_model');
-
+            $changes = array();
             //To make the code a little bit easier to comprehend
             // I decided to do multiple transactions in case when both email and password has changed
             //Check if email has changed
@@ -305,28 +305,26 @@ class Profile extends BaseController
             if ($email != $this->session->userdata('email')) {
                 //Check if both email fields are filled
                 if ($email == $emailConf) {
+                    $changes['email'] = $email;
                     $resultEmail = $this->register_model->editProfileSecure(
-                        $this->session->userdata('user_id'), $passwordOld, $email, $password = null);
+                        $this->session->userdata('user_id'), $passwordOld, $changes);
                 } else { //Emails did not match
                     $error = 'Nieuwe email adressen komen niet overeen';
                     $this->session->keep_flashdata('userdata');
                     $this->edit($error);
-                    // $this->session->set_flashdata('message', $error);
-                    //redirect('welcome/message');
                 }
             }
             //Check if password has changed
             if ($password != '') {
                 //Check if both password fields are filled
                 if ($password == $passwordConf) {
+                    $changes['password'] = $password;
                     $resultPassword = $this->register_model->editProfileSecure(
-                        $this->session->userdata('user_id'), $passwordOld, $email = null, $password);
+                        $this->session->userdata('user_id'), $passwordOld, $changes);
                 } else { //Passwords did not match
                     $error = 'Nieuwe paswoorden komen niet overeen';
                     $this->session->keep_flashdata('userdata');
                     $this->edit($error);
-                    // $this->session->set_flashdata('message', $error);
-                    // redirect('welcome/message');
                 }
             }
             //check update database
@@ -334,8 +332,7 @@ class Profile extends BaseController
                 $error = 'Invoer in database is mislukt';
                 $this->session->keep_flashdata('userdata');
                 $this->edit($error);
-
-            } else {
+            } else { //All is good, go back to profile read-only view
                 //display profile after edit
                 redirect('profile');
             }

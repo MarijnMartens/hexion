@@ -62,7 +62,8 @@ class Register_model extends CI_Model {
         }
     }
 
-    function editProfileSecure($user_id, $passwordOld, $email = null, $password = null) {
+    function editProfileSecure($user_id, $passwordOld, $changes)
+    {
         $this->db->where('id', $user_id);
         $query = $this->db->get('user');
         // Let's check if there are any results
@@ -71,14 +72,14 @@ class Register_model extends CI_Model {
             if (password_verify($passwordOld, $row->password)) {
                 $data = array();
                 //check if email changed
-                if ($email != '') {
-                    $data['email'] = $email;
+                if ($changes['email'] != null || $changes['email'] != '') {
+                    $data['email'] = $changes['email'];
                 }
                 //check if password changed
-                if ($password != '') {
+                if ($changes['password'] != null || $changes['password'] != '') {
                     //encrypting crypt, auto salt met cost
                     $option = ['cost' => 12];
-                    $password = password_hash($password, PASSWORD_DEFAULT, $option);
+                    $password = password_hash($changes['password'], PASSWORD_DEFAULT, $option);
                     $data['password'] = $password;
                 }
                 //update data
