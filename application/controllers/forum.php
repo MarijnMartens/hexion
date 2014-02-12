@@ -389,7 +389,7 @@ class Forum extends CI_Controller
         //subtract the modified message ('edited on + data + username') from text before showing
         $reply_message = $result->message;
         //remove string at pos to end if found
-        $message_newPosChange = strpos($reply_message, ' < h6>Aangepast door: ');
+        $message_newPosChange = strpos($reply_message, ' <h6>Aangepast door: ');
         if ($message_newPosChange > 0) {
             $reply_message = substr_replace($reply_message, '', $message_newPosChange);
         }
@@ -448,7 +448,7 @@ class Forum extends CI_Controller
                 $username = 'Gast' . $this->input->cookie('guest_id');
             }
             $reply_message = $this->input->post('reply');
-            $message = $reply_message . ' < h6>Aangepast door: ' . $username . ', op: ' . $date = date('d/m/Y H:i:s', time()) . ' </h6 > ';
+            $message = $reply_message . ' <h6>Aangepast door: ' . $username . ', op: ' . $date = date('d/m/Y H:i:s', time()) . ' </h6 > ';
             $result = $this->reply_model->edit(
                 $reply_id, ucfirst($message), $mod_break, $this->session->flashdata('message_old')
             );

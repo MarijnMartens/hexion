@@ -12,7 +12,7 @@ echo '<h2>Verwijder Topic: ' . $topic_title
     .
     '</h2>';
 echo '<div class="content">';
-echo form_open('forum/deleteTopicProcess'); ?>
+echo form_open('forum/deleteTopicProcess/' . $topic_id); ?>
     <p>Ben je ABSOLUUT zeker dat je '<b><?php echo $topic_title; ?></b>' wil verwijderen, deze actie is onomkeerbaar.
     </p>
     <div class="right">

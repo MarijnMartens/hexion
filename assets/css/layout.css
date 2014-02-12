@@ -9,7 +9,7 @@ html, body {
     height: 100%;
     font-family: Calibri, sans-serif;
     /* Background, color in case image does not load */
-    background: #1e1e1e url("../images/wood_medium.jpg");
+    background: /*#1e1e1e*/ url("../images/wood_medium.jpg");
 }
 
 /* Container div contains entire page: Header / Page / Footer */

@@ -12,9 +12,7 @@ if (!defined('BASEPATH'))
 //Load custom view, done this way to display a view within this template view
 //This way I can create multiple 'islands', need for ie the homepage
 $this->load->view('template/tmpHeader_view');
-?>
 
-<?php
 //Display aside: default = Yes
 if (!(isset($aside_visible))) {
     $aside_display = '';

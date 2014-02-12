@@ -24,8 +24,6 @@ if (!defined('BASEPATH'))
     <?PHP
     echo link_tag("assets/css/layout.css");
     echo link_tag("assets/css/text.css");
-    //Webkit fixes
-    echo '<link rel="stylesheet" href="assets/css/webkit.css" type="text/chrome/safari';
     ?>
     <!-- Download jquery if not on computer -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
