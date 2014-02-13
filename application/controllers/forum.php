@@ -465,6 +465,8 @@ class Forum extends CI_Controller
     //Send confirmation to delete topic
     public function deleteTopic($topic_id)
     {
+        //Validate form
+        $this->load->library('form_validation');
         $bodyData['title'] = 'Delete topic';
         $bodyData['topic_title'] = $this->topic_model->getData($topic_id)->title;
         $this->session->set_flashdata('topic_id', $topic_id);

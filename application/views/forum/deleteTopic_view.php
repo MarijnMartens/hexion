@@ -12,10 +12,11 @@ echo '<h2>Verwijder Topic: ' . $topic_title
     .
     '</h2>';
 echo '<div class="content">';
-echo form_open('forum/deleteTopicProcess/' . $topic_id); ?>
-    <p>Ben je ABSOLUUT zeker dat je '<b><?php echo $topic_title; ?></b>' wil verwijderen, deze actie is onomkeerbaar.
+echo form_open('forum/deleteTopicProcess'); ?>
+    <p>Ben je ABSOLUUT zeker dat je <b><?php echo $topic_title; ?></b> wil verwijderen, deze actie is onomkeerbaar.
     </p>
     <div class="right">
-        <input type="submit" value="Ja, gooi het topic weg" class="submit"/></div>
+        <?php echo form_submit('submit', 'Ja, gooi het topic weg', 'class="submit"'); ?>
+    </div>
 <?php echo form_close();
 echo '</div>';
