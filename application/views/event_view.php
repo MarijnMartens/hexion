@@ -27,7 +27,7 @@ echo form_submit('submit', '>');
 echo '</td></tr><tr><td>';
 echo form_label('Wanneer:');
 echo '</td><td>';
-echo '<input type="date" name="date">';
+echo '<input type="date" name="date" placeholder="Datum">';
 echo '</td><td>';
 echo form_input('time', 'Tijd?', set_value('time'));
 echo '</td></tr><tr><td>';
